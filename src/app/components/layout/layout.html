@@ -1,0 +1,56 @@
+<aside class="sidebar">
+  <!-- Logo -->
+  <div class="sidebar-logo">
+    <div class="sidebar-logo-icon">👤</div>
+    <div class="sidebar-logo-text">
+      <h1>AttendFlow</h1>
+      <p>Admin Portal</p>
+    </div>
+  </div>
+
+  <!-- Admin Panel Section -->
+  <div class="sidebar-section-title">Admin Panel</div>
+
+  <!-- Navigation -->
+  <nav class="sidebar-nav">
+    <a [routerLink]="'/dashboard'" routerLinkActive="active" class="sidebar-nav-item">
+      <span class="sidebar-nav-item-icon">📊</span>
+      <span>Dashboard</span>
+    </a>
+
+    <a [routerLink]="'/staff'" routerLinkActive="active" class="sidebar-nav-item">
+      <span class="sidebar-nav-item-icon">👥</span>
+      <span>Staff Management</span>
+    </a>
+
+    <a [routerLink]="'/attendance'" routerLinkActive="active" class="sidebar-nav-item">
+      <span class="sidebar-nav-item-icon">📋</span>
+      <span>Attendance Records</span>
+    </a>
+
+    <a [routerLink]="'/reports'" routerLinkActive="active" class="sidebar-nav-item">
+      <span class="sidebar-nav-item-icon">📈</span>
+      <span>Reports & Analytics</span>
+    </a>
+
+    <a [routerLink]="'/settings'" routerLinkActive="active" class="sidebar-nav-item">
+      <span class="sidebar-nav-item-icon">⚙️</span>
+      <span>Settings</span>
+    </a>
+  </nav>
+
+  <!-- Staff Portal Section -->
+  <div class="sidebar-section-title">Staff Portal</div>
+
+  <!-- Mobile Login -->
+  <div class="sidebar-footer">
+    <a [routerLink]="'/mobile-login'" class="sidebar-nav-item">
+      <span class="sidebar-nav-item-icon">📱</span>
+      <span>Mobile Login</span>
+    </a>
+  </div>
+</aside>
+
+<main class="main-content">
+  <router-outlet></router-outlet>
+</main>

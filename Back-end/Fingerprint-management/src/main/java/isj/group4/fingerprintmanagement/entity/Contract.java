@@ -18,6 +18,7 @@ public class Contract {
     private Integer noDaysPerWeek;
     private LocalDate startTime;
     private LocalDate endTime;
+    private LocalDate contractDate;
 
     @OneToOne
     @JoinColumn(name = "staff_id", unique = true)

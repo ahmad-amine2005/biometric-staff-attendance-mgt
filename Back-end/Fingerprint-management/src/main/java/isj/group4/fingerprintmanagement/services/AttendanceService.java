@@ -15,6 +15,10 @@ public class AttendanceService {
 
     private AttendanceRepo attendanceRepo;
 
+    public Attendance saveAttendance(Attendance attendance){
+        return attendanceRepo.save(attendance);
+    }
+
     public Attendance getAttendanceById(Long id){
         return attendanceRepo.findByAttendanceId(id);
     }

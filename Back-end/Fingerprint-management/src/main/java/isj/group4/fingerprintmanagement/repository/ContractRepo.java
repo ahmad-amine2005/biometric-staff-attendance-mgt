@@ -12,4 +12,9 @@ public interface ContractRepo extends JpaRepository<Contract,Long> {
     Contract findByContractId(Long contractId);
 
     List<Contract> findContractsByNoDaysPerWeek(Integer noDaysPerWeek);
+
+    Contract findContractByStaff_UserId(Long staffUserId);
+
+    List<Contract> findContractsByStaff_Department_DpmtId(Long staffDepartmentDpmtId);
+
 }

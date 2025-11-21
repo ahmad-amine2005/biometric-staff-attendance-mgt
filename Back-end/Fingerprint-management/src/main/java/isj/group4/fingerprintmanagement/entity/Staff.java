@@ -10,7 +10,6 @@ import java.util.ArrayList;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @EqualsAndHashCode(callSuper = true)
 public class Staff extends User {
 
@@ -18,7 +17,6 @@ public class Staff extends User {
 
     // Many attendances for a staff
     @OneToMany(mappedBy = "staff", cascade = CascadeType.ALL, orphanRemoval = true)
-    @Builder.Default
     private List<Attendance> attendances = new ArrayList<>();
 
     // Staff -> Department (ManyToOne)

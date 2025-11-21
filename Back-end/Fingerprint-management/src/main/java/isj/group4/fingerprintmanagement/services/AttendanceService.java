@@ -13,7 +13,7 @@ import java.util.List;
 @Log4j2
 public class AttendanceService {
 
-    private AttendanceRepo attendanceRepo;
+    private final AttendanceRepo attendanceRepo;
 
     public Attendance saveAttendance(Attendance attendance){
         return attendanceRepo.save(attendance);

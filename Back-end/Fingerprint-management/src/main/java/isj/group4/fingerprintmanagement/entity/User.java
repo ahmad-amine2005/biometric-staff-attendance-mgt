@@ -19,8 +19,25 @@ public class User {
 
     private String name;
     private String surname;
-    @Column(unique = true)
+
+    @Column(unique = true, nullable = false)
     private String email;
+
+
+
+    /**
+     * User role (e.g., "ROLE_ADMIN", "ROLE_STAFF").
+     * Used for authorization and access control.
+     */
+    @Column(nullable = false)
+    private String role;
+
+    /**
+     * Indicates if the account is active.
+     * Inactive accounts cannot authenticate.
+     */
+    @Builder.Default
+    private Boolean active = true;
 
     // One user may have many notifications
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)

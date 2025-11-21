@@ -21,4 +21,6 @@ public interface AttendanceRepo extends JpaRepository<Attendance,Long> {
     List<Attendance> findAttendancesByAttendanceDateAndDepartureTime(LocalDate attendanceDate, LocalDateTime departureTime);
 
     List<Attendance> findAttendancesByStaff_Department_DpmtId(Long staffDepartmentDpmtId);
+
+    Attendance findByAttendanceId(Long attendanceId);
 }

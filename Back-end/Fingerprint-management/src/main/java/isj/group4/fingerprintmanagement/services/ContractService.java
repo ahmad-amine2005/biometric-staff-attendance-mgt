@@ -14,7 +14,7 @@ import java.util.List;
 @Log4j2
 public class ContractService {
 
-    private ContractRepo contractRepo;
+    private final ContractRepo contractRepo;
 
     public Contract saveContract(Contract contract){
         return contractRepo.save(contract);

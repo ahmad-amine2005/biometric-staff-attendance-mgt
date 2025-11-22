@@ -6,11 +6,30 @@ import lombok.*;
 @Entity
 @Table(name = "admins")
 @Data
-@NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
+@NoArgsConstructor
 public class Admin extends User {
-    // No extra attributes in diagram; keep class to represent role
-    public Admin(Long userId, String name, String surname, String email) {
-        super(userId, name, surname, email, null, null);
+    // Admin-specific attributes can be added here
+    // Currently inherits all fields from User (userId, name, surname, email, password, role, active)
+
+    /**
+     * Hashed password for authentication.
+     * Should be encoded using BCryptPasswordEncoder before storing.
+     */
+    @Column(nullable = false)
+    private String password;
+
+    /**
+     * Constructor for creating admin with full details.
+     */
+    public Admin(Long userId, String name, String surname, String email, String role, Boolean active) {
+        super(userId, name, surname, email, role, active, null, null);
+    }
+
+    /**
+     * Simplified constructor for new admin creation.
+     */
+    public Admin(String name, String surname, String email) {
+        super(null, name, surname, email, "ROLE_ADMIN", true, null, null);
     }
 }

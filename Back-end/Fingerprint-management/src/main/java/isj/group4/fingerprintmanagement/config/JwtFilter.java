@@ -26,7 +26,7 @@ public class JwtFilter extends OncePerRequestFilter {
     private UserDetailsService userDetailsService;
 
     // Public endpoints that don’t require JWT
-    private static final List<String> PUBLIC_URLS = List.of("/auth/login", "/auth/register");
+//    private static final List<String> PUBLIC_URLS = List.of("/auth/**");
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,
@@ -39,7 +39,7 @@ public class JwtFilter extends OncePerRequestFilter {
         System.out.println("Request URI: " + path);
 
         // Skip JWT validation for public URLs
-        if (PUBLIC_URLS.stream().anyMatch(path::contains)) {
+        if (path.startsWith("/auth/")) {
             System.out.println("Public URL detected, skipping JWT validation");
             filterChain.doFilter(request, response);
             return;

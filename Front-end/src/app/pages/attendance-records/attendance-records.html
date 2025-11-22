@@ -1,0 +1,58 @@
+<div class="p-8">
+  <!-- Header -->
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900">Attendance Records</h1>
+    <p class="text-gray-600 mt-1">View and manage all attendance records</p>
+  </div>
+
+  <!-- Filters and Search -->
+  <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100 mb-6">
+    <h2 class="text-xl font-bold text-gray-900 mb-4">All Attendance Records</h2>
+    <div class="flex items-center justify-between">
+      <input 
+        type="text" 
+        [(ngModel)]="searchQuery"
+        placeholder="Search by name, department, or date..."
+        class="flex-1 max-w-md px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+      
+      <button 
+        (click)="exportRecords()"
+        class="ml-4 bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 px-6 py-2 rounded-lg font-medium flex items-center space-x-2 transition-colors">
+        <span>⬇</span>
+        <span>Export</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Attendance Table -->
+  <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+    <table class="w-full">
+      <thead class="bg-gray-50 border-b border-gray-200">
+        <tr>
+          <th class="text-left py-4 px-6 text-sm font-semibold text-gray-700">Date</th>
+          <th class="text-left py-4 px-6 text-sm font-semibold text-gray-700">Staff Name</th>
+          <th class="text-left py-4 px-6 text-sm font-semibold text-gray-700">Department</th>
+          <th class="text-left py-4 px-6 text-sm font-semibold text-gray-700">Check In</th>
+          <th class="text-left py-4 px-6 text-sm font-semibold text-gray-700">Check Out</th>
+          <th class="text-left py-4 px-6 text-sm font-semibold text-gray-700">Hours</th>
+          <th class="text-left py-4 px-6 text-sm font-semibold text-gray-700">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let record of filteredRecords" class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+          <td class="py-4 px-6 text-gray-900">{{record.date | date:'MMM d, yyyy'}}</td>
+          <td class="py-4 px-6 font-medium text-gray-900">{{record.staffName}}</td>
+          <td class="py-4 px-6 text-gray-600">{{record.department}}</td>
+          <td class="py-4 px-6 text-gray-900 font-medium">{{record.checkIn || '-'}}</td>
+          <td class="py-4 px-6 text-gray-900 font-medium">{{record.checkOut || '-'}}</td>
+          <td class="py-4 px-6 text-gray-600">{{record.hoursWorked > 0 ? record.hoursWorked + 'h' : '-'}}</td>
+          <td class="py-4 px-6">
+            <span [class]="'px-3 py-1 text-xs font-semibold rounded-full ' + getStatusClass(record.status)">
+              {{record.status}}
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

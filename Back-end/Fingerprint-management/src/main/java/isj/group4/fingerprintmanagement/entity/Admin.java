@@ -7,8 +7,6 @@ import lombok.*;
 @Table(name = "admins")
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @EqualsAndHashCode(callSuper = true)
 public class Admin extends User {
     // No extra attributes in diagram; keep class to represent role

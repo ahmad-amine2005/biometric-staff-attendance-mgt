@@ -27,7 +27,4 @@ public class User {
     @Builder.Default
     private List<Notification> notifications = new ArrayList<>();
 
-    // Optional one-to-one fingerprint
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Fingerprint fingerprint;
 }

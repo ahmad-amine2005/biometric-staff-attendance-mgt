@@ -5,92 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ac8ee66-3e27-4bde-8182-e73b79ef6a75" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/copilot.data.migration.agent.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/copilot.data.migration.ask.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/copilot.data.migration.ask2agent.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/copilot.data.migration.edit.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/.idea/dataSources.local.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/.editorconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/.github/copilot-instructions.md" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/.github/copilot-instructions.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/.vscode/extensions.json" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/.vscode/extensions.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/.vscode/launch.json" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/.vscode/launch.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/.vscode/tasks.json" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/.vscode/tasks.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/angular.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/public/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/public/favicon.ico" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/app.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/src/app/app.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/app.html" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/src/app/app.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/app.routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/src/app/app.routes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/src/app/app.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/app.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/src/app/app.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/app.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/src/app/app.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/components/button/button.html" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/src/app/components/button/button.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/components/button/button.scss" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/src/app/components/button/button.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/components/button/button.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/src/app/components/button/button.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/components/button/button.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/src/app/components/button/button.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/components/input-field/input-field.html" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/src/app/components/input-field/input-field.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/components/input-field/input-field.scss" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/src/app/components/input-field/input-field.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/components/input-field/input-field.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/src/app/components/input-field/input-field.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/components/input-field/input-field.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/src/app/components/input-field/input-field.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/components/layout/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/src/app/components/layout/layout.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/components/layout/layout.scss" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/src/app/components/layout/layout.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/components/layout/layout.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/src/app/components/layout/layout.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/components/layout/layout.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/src/app/components/layout/layout.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/features/attendance-records/attendance-records-module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/src/app/features/attendance-records/attendance-records-module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/features/dashboard/dashboard-module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/src/app/features/dashboard/dashboard-module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/features/dashboard/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/src/app/features/dashboard/dashboard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/features/reports/reports-module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/src/app/features/reports/reports-module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/features/settings/settings-module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/src/app/features/settings/settings-module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/features/staff-management/staff-management-module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/src/app/features/staff-management/staff-management-module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/guards/auth-guard.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/src/app/guards/auth-guard.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/guards/auth-guard.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/src/app/guards/auth-guard.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/models/attendance.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/src/app/models/attendance.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/models/department.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/src/app/models/department.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/models/staff.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/src/app/models/staff.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/pages/attendance-records/attendance-records.html" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/src/app/pages/attendance-records/attendance-records.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/pages/attendance-records/attendance-records.scss" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/src/app/pages/attendance-records/attendance-records.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/pages/attendance-records/attendance-records.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/src/app/pages/attendance-records/attendance-records.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/pages/attendance-records/attendance-records.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/src/app/pages/attendance-records/attendance-records.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/pages/dashboard/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/src/app/pages/dashboard/dashboard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/pages/dashboard/dashboard.scss" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/src/app/pages/dashboard/dashboard.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/pages/dashboard/dashboard.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/src/app/pages/dashboard/dashboard.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/pages/dashboard/dashboard.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/src/app/pages/dashboard/dashboard.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/pages/reports/reports.html" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/src/app/pages/reports/reports.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/pages/reports/reports.scss" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/src/app/pages/reports/reports.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/pages/reports/reports.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/src/app/pages/reports/reports.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/pages/reports/reports.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/src/app/pages/reports/reports.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/pages/settings/settings.html" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/src/app/pages/settings/settings.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/pages/settings/settings.scss" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/src/app/pages/settings/settings.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/pages/settings/settings.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/src/app/pages/settings/settings.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/pages/settings/settings.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/src/app/pages/settings/settings.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/pages/signup/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/src/app/pages/signup/signup.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/pages/signup/signup.scss" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/src/app/pages/signup/signup.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/pages/signup/signup.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/src/app/pages/signup/signup.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/pages/signup/signup.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/src/app/pages/signup/signup.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/pages/staff-management/staff-management.html" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/src/app/pages/staff-management/staff-management.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/pages/staff-management/staff-management.scss" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/src/app/pages/staff-management/staff-management.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/pages/staff-management/staff-management.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/src/app/pages/staff-management/staff-management.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/pages/staff-management/staff-management.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/src/app/pages/staff-management/staff-management.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/services/attendance.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/src/app/services/attendance.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/services/attendance.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/src/app/services/attendance.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/services/auth.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/src/app/services/auth.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/services/auth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/src/app/services/auth.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/services/staff.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/src/app/services/staff.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/services/staff.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/src/app/services/staff.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/src/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/src/main.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/src/styles.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/tsconfig.app.json" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/tsconfig.app.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/tsconfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/tsconfig.spec.json" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/tsconfig.spec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -145,35 +63,44 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "Spring Boot.FingerprintManagementApplication.executor": "Run",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "Elsa",
-    "ignore.virus.scanning.warn.message": "true",
-    "junie.onboarding.icon.badge.shown": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/A APH/Documents/ING4-Cours/Agile method/biometric-staff-attendance-mgt",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "npm.ng.executor": "Run",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "to.speed.mode.migration.done": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;Spring Boot.FingerprintManagementApplication.executor&quot;: &quot;Run&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;backend/yann&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/A APH/Documents/ING4-Cours/Agile method/biometric-staff-attendance-mgt&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.ng.executor&quot;: &quot;Run&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Spring Boot.FingerprintManagementApplication">
+    <configuration default="true" type="JetRunConfigurationType">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
     <configuration name="FingerprintManagementApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="Fingerprint-management" />
@@ -215,10 +142,23 @@
       <workItem from="1763802294100" duration="1765000" />
       <workItem from="1763805167570" duration="1432000" />
       <workItem from="1763807424345" duration="318000" />
+      <workItem from="1763814897440" duration="688000" />
+      <workItem from="1763902219508" duration="2865000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

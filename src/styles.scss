@@ -50,7 +50,7 @@ body {
 /* Sidebar Styles */
 .sidebar {
   width: 240px;
-  background: linear-gradient(180deg, #1a1d23 0%, #0f1115 100%);
+  background:#013;
   color: white;
   display: flex;
   flex-direction: column;
@@ -58,6 +58,7 @@ body {
   position: fixed;
   left: 0;
   top: 0;
+  font-weight: 800px;
 }
 
 .sidebar-logo {
@@ -844,3 +845,5 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+

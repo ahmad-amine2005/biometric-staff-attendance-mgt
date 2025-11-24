@@ -1,72 +1,72 @@
-<div class="p-8">
+<div class="reports-container">
   <!-- Header -->
-  <div class="flex items-center justify-between mb-8">
-    <div>
-      <h1 class="text-3xl font-bold text-gray-900">Reports & Analytics</h1>
-      <p class="text-gray-600 mt-1">Attendance insights and trends</p>
+  <div class="page-header">
+    <div class="header-content">
+      <h1 class="page-title">Reports & Analytics</h1>
+      <p class="page-subtitle">Attendance insights and trends</p>
     </div>
     <button 
       (click)="exportReport()"
-      class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold flex items-center space-x-2 transition-colors">
-      <span>⬇</span>
+      class="btn-export-report">
+      <span class="export-icon">⬇</span>
       <span>Export Report</span>
     </button>
   </div>
 
   <!-- Stats Cards -->
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-    <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-      <div class="flex items-center justify-between mb-2">
-        <p class="text-gray-600 text-sm">Attendance Rate</p>
-        <span class="text-green-600 text-sm">📈</span>
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-header">
+        <p class="stat-label">Attendance Rate</p>
+        <span class="stat-icon stat-icon-green">📈</span>
       </div>
-      <p class="text-4xl font-bold text-gray-900 mb-1">{{stats?.attendanceRate || 0}}%</p>
-      <p class="text-xs text-gray-500">Last 30 days</p>
+      <p class="stat-value">{{stats?.attendanceRate || 68.8}}%</p>
+      <p class="stat-period">Last 30 days</p>
     </div>
 
-    <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-      <div class="flex items-center justify-between mb-2">
-        <p class="text-gray-600 text-sm">Late Arrival Rate</p>
-        <span class="text-amber-600 text-sm">⚠️</span>
+    <div class="stat-card">
+      <div class="stat-header">
+        <p class="stat-label">Late Arrival Rate</p>
+        <span class="stat-icon stat-icon-amber">⚠️</span>
       </div>
-      <p class="text-4xl font-bold text-gray-900 mb-1">{{stats?.lateArrivalRate || 0}}%</p>
-      <p class="text-xs text-gray-500">Last 30 days</p>
+      <p class="stat-value">{{stats?.lateArrivalRate || 15.9}}%</p>
+      <p class="stat-period">Last 30 days</p>
     </div>
 
-    <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-      <div class="flex items-center justify-between mb-2">
-        <p class="text-gray-600 text-sm">Total Absences</p>
-        <span class="text-red-600 text-sm">📊</span>
+    <div class="stat-card">
+      <div class="stat-header">
+        <p class="stat-label">Total Absences</p>
+        <span class="stat-icon stat-icon-red">📊</span>
       </div>
-      <p class="text-4xl font-bold text-gray-900 mb-1">22</p>
-      <p class="text-xs text-gray-500">Last 30 days</p>
+      <p class="stat-value">{{stats?.lateArrivalRate || 22}}</p>
+      <p class="stat-period">Last 30 days</p>
     </div>
   </div>
 
   <!-- Staff Attendance Summary -->
-  <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-    <h2 class="text-xl font-bold text-gray-900 mb-6">Staff Attendance Summary</h2>
-    <div class="space-y-6">
-      <div *ngFor="let report of staffReports" class="flex items-center">
-        <div class="flex-1">
-          <div class="flex items-center justify-between mb-2">
-            <div>
-              <p class="font-medium text-gray-900">{{report.name}}</p>
-              <p class="text-sm text-gray-500">{{report.department}}</p>
+  <div class="summary-card">
+    <h2 class="summary-title">Staff Attendance Summary</h2>
+    <div class="summary-list">
+      <div *ngFor="let report of staffReports" class="summary-item">
+        <div class="summary-info">
+          <div class="summary-header">
+            <div class="staff-info">
+              <p class="staff-name">{{report.name}}</p>
+              <p class="staff-department">{{report.department}}</p>
             </div>
-            <div class="text-right">
-              <p class="text-sm text-gray-600">{{report.daysPresent}} / {{report.totalDays}}</p>
-              <p class="text-xs text-gray-500">Days present</p>
+            <div class="attendance-stats">
+              <p class="days-present">{{report.daysPresent}} / {{report.totalDays}}</p>
+              <p class="days-label">Days present</p>
             </div>
           </div>
-          <div class="flex items-center space-x-3">
-            <div class="flex-1 bg-gray-200 rounded-full h-2">
+          <div class="progress-container">
+            <div class="progress-bar">
               <div 
-                class="bg-blue-600 h-2 rounded-full transition-all duration-300"
+                class="progress-fill"
                 [style.width.%]="report.percentage">
               </div>
             </div>
-            <span class="text-sm font-semibold text-gray-900 w-12 text-right">{{report.percentage}}%</span>
+            <span class="percentage-label">{{report.percentage}}%</span>
           </div>
         </div>
       </div>

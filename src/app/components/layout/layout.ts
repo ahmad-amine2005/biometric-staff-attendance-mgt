@@ -21,4 +21,9 @@ export class Layout {
 
   mobileMenuItem = { icon: '📱', label: 'Mobile Login', route: '/mobile-login' };
 
+  isSidebarCollapsed = false;
+
+  toggleSidebar() {
+    this.isSidebarCollapsed = !this.isSidebarCollapsed;
+  }
 }

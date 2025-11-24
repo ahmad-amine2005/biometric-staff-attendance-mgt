@@ -1,0 +1,30 @@
+.icon-transition {
+  transition: all 0.3s ease;
+}
+
+.input-field {
+  width: 100%;
+  padding-left: 3rem;
+  padding-right: 1rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  border-radius: 0.5rem;
+  border-width: 2px;
+  transition: all 0.3s ease;
+  outline: none;
+  background-color: #f9fafb;
+}
+
+.input-field:hover {
+  border-color: #d1d5db;
+}
+
+.input-default {
+  border-color: #e5e7eb;
+}
+
+.input-focused {
+  border-color: #60a5fa;
+  background-color: white;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}

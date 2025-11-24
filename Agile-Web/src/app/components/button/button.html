@@ -1,0 +1,11 @@
+<button
+  [type]="type"
+  (click)="handleClick()"
+  (mouseenter)="isHovered = true"
+  (mouseleave)="isHovered = false"
+  [class.button-hovered]="isHovered"
+  class="custom-button"
+>
+  <ng-content></ng-content>
+</button>
+

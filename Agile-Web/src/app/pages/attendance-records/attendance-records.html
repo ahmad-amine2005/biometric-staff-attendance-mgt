@@ -1,0 +1,63 @@
+<div class="attendance-records-container">
+  <!-- Header -->
+  <div class="page-header">
+    <div class="header-content">
+      <h1 class="page-title">Attendance Records</h1>
+      <p class="page-subtitle">View and manage all attendance records</p>
+    </div>
+  </div>
+
+  <!-- Filters Section -->
+  <div class="filters-card">
+    <h2 class="filters-title">All Attendance Records</h2>
+    <div class="filters-content">
+      <div class="search-wrapper">
+        <span class="search-icon">🔍</span>
+        <input 
+          type="text" 
+          [(ngModel)]="searchQuery"
+          placeholder="Search by name, department, or date..."
+          class="search-input">
+      </div>
+      
+      <button 
+        (click)="exportRecords()"
+        class="btn-export">
+        <span class="export-icon">⬇</span>
+        <span>Export</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Attendance Table -->
+  <div class="table-container">
+    <table class="attendance-table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Staff Name</th>
+          <th>Department</th>
+          <th>Check In</th>
+          <th>Check Out</th>
+          <th>Hours</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let record of filteredRecords" class="table-row">
+          <td class="date-cell">{{record.date | date:'MMM d, yyyy'}}</td>
+          <td class="staff-name-cell">{{record.staffName}}</td>
+          <td class="text-muted">{{record.department}}</td>
+          <td class="time-cell">{{record.checkIn || '-'}}</td>
+          <td class="time-cell">{{record.checkOut || '-'}}</td>
+          <td class="hours-cell">{{record.hoursWorked > 0 ? record.hoursWorked + 'h' : '-'}}</td>
+          <td>
+            <span [class]="'status-badge status-' + record.status.toLowerCase()">
+              {{record.status}}
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

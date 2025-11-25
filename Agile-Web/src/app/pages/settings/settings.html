@@ -1,0 +1,139 @@
+<div class="settings-container">
+  <!-- Header -->
+  <div class="page-header">
+    <h1 class="page-title">Settings</h1>
+    <p class="page-subtitle">Manage system preferences and configurations</p>
+  </div>
+
+  <!-- Working Hours Section -->
+  <div class="settings-card">
+    <h2 class="section-title">Working Hours</h2>
+    <p class="section-description">Configure standard working hours and late arrival threshold</p>
+    
+    <div class="form-grid">
+      <div class="form-group">
+        <label class="form-label">Standard Start Time</label>
+        <div class="input-with-icon">
+          <input 
+            type="time" 
+            [(ngModel)]="settings.startTime"
+            value="09:00"
+            class="form-input">
+          <span class="input-icon">🕐</span>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label class="form-label">Standard End Time</label>
+        <div class="input-with-icon">
+          <input 
+            type="time" 
+            [(ngModel)]="settings.endTime"
+            value="17:00"
+            class="form-input">
+          <span class="input-icon">🕐</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group-full">
+      <label class="form-label">Late Arrival Threshold (minutes)</label>
+      <input 
+        type="number" 
+        [(ngModel)]="settings.lateThreshold"
+        value="15"
+        class="form-input"
+        placeholder="15">
+    </div>
+
+    <button 
+      (click)="saveChanges()"
+      class="btn-save">
+      Save Changes
+    </button>
+  </div>
+
+  <!-- Notifications Section -->
+  <div class="settings-card">
+    <h2 class="section-title">Notifications</h2>
+    <p class="section-description">Configure notification preferences</p>
+    
+    <div class="settings-list">
+      <div class="setting-item">
+        <div class="setting-info">
+          <p class="setting-label">Email Notifications</p>
+          <p class="setting-description">Receive daily attendance summary via email</p>
+        </div>
+        <label class="toggle-switch">
+          <input 
+            type="checkbox" 
+            [(ngModel)]="settings.emailNotifications"
+            checked>
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+
+      <div class="setting-item">
+        <div class="setting-info">
+          <p class="setting-label">Late Arrival Alerts</p>
+          <p class="setting-description">Get notified when staff arrive late</p>
+        </div>
+        <label class="toggle-switch">
+          <input 
+            type="checkbox" 
+            [(ngModel)]="settings.lateArrivalAlerts"
+            checked>
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+
+      <div class="setting-item">
+        <div class="setting-info">
+          <p class="setting-label">Absence Alerts</p>
+          <p class="setting-description">Get notified about staff absences</p>
+        </div>
+        <label class="toggle-switch">
+          <input 
+            type="checkbox" 
+            [(ngModel)]="settings.absenceAlerts">
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Security Section -->
+  <div class="settings-card">
+    <h2 class="section-title">Security</h2>
+    <p class="section-description">Fingerprint and authentication settings</p>
+    
+    <div class="settings-list">
+      <div class="setting-item">
+        <div class="setting-info">
+          <p class="setting-label">Require Fingerprint for Check-in</p>
+          <p class="setting-description">Mandatory fingerprint scan for attendance</p>
+        </div>
+        <label class="toggle-switch">
+          <input 
+            type="checkbox" 
+            [(ngModel)]="settings.requireFingerprint"
+            checked>
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+
+      <div class="setting-item">
+        <div class="setting-info">
+          <p class="setting-label">Allow Location Tracking</p>
+          <p class="setting-description">Track location during check-in/out</p>
+        </div>
+        <label class="toggle-switch">
+          <input 
+            type="checkbox" 
+            [(ngModel)]="settings.allowLocationTracking">
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+    </div>
+  </div>
+</div>

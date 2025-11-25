@@ -1,5 +1,7 @@
 import { Routes } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { SignupComponent } from './pages/signup/signup';
+import { Login } from './pages/login/login';
 
 export const routes: Routes = [
 
@@ -48,9 +50,14 @@ export const routes: Routes = [
   },
 
   {
+    path: 'login',
+    component: Login
+  },
+
+  {
     // Fallback route - redirect any unknown path to dashboard
     path: '**',
-    redirectTo: 'dashboard'
+    redirectTo: 'login'
   }
 
 ];

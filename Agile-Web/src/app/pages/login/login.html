@@ -12,8 +12,8 @@
 
     <!-- Title and Description -->
     <div class="header-text">
-      <h1 class="title">Admin Portal Signup</h1>
-      <p class="subtitle">Create your account to get started</p>
+      <h1 class="title">Admin Portal Login</h1>
+      <p class="subtitle">Welcome Back! Login to get started</p>
     </div>
 
     <!-- Form -->
@@ -27,14 +27,6 @@
         (valueChange)="employeeId = $event"
       ></app-input-field>
 
-      <app-input-field
-        icon="mail"
-        type="email"
-        placeholder="Enter your email address"
-        label="Email"
-        [value]="email"
-        (valueChange)="email = $event"
-      ></app-input-field>
 
       <app-input-field
         icon="lock"
@@ -45,25 +37,17 @@
         (valueChange)="password = $event"
       ></app-input-field>
 
-      <app-input-field
-        icon="lock"
-        type="password"
-        placeholder="Confirm your password"
-        label="Confirm Password"
-        [value]="confirmPassword"
-        (valueChange)="confirmPassword = $event"
-      ></app-input-field>
 
       <!-- Submit Button -->
       <div class="submit-button-wrapper">
         <app-button type="submit" (clicked)="onSignup()">
-          Sign Up
+          Login
         </app-button>
       </div>
     <div class="footer-text">
             <p class="footer-message">
-            Already have an account?
-            <a href="#" routerLink="/login" class="login-link">Log In</a>
+            Don't have an Account?
+            <a href="#" routerLink="/signup" class="login-link">SignUp</a>
             </p>
         </div>
         </form>

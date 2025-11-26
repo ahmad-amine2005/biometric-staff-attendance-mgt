@@ -1,0 +1,70 @@
+import { Routes } from '@angular/router';
+import { RouterModule } from '@angular/router';
+import { SignupComponent } from './pages/signup/signup';
+import { Login } from './pages/login/login';
+
+export const routes: Routes = [
+// Default root → login
+  {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full'
+  },
+
+  // Auth pages (standalone, no layout)
+  {
+    path: 'login',
+    component: Login   // or loadComponent if Login is standalone
+  },
+  {
+    path: 'signup',
+    component: SignupComponent   // or loadComponent if Signup is standalone
+  },
+
+  {
+    path: '',
+    loadComponent: () => import('./components/layout/layout')
+      .then(m => m.Layout),
+    children: [
+      {
+        path: '',
+        redirectTo: 'dashboard',
+        pathMatch: 'full'
+      },
+      {
+        path: 'dashboard',
+        loadComponent: () => import('./pages/dashboard/dashboard')
+          .then(m => m.Dashboard)
+      },
+      {
+        path: 'staff',
+        loadComponent: () => import('./pages/staff-management/staff-management')
+          .then(m => m.StaffManagement)
+      },
+      {
+        path: 'attendance',
+        loadComponent: () => import('./pages/attendance-records/attendance-records')
+          .then(m => m.AttendanceRecords)
+      },
+      {
+        path: 'reports',
+        loadComponent: () => import('./pages/reports/reports')
+          .then(m => m.Reports)
+      },
+      {
+        path: 'settings',
+        loadComponent: () => import('./pages/settings/settings')
+          .then(m => m.Settings)
+      },
+
+    ]
+  },
+
+
+  {
+    // Fallback route - redirect any unknown path to dashboard
+    path: '**',
+    redirectTo: 'login'
+  }
+
+];

@@ -1,0 +1,58 @@
+package isj.group4.fingerprintmanagement.entity;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+import lombok.*;
+import java.util.List;
+import java.util.ArrayList;
+
+@Entity
+@Table(name = "users")
+@Inheritance(strategy = InheritanceType.JOINED)
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+
+public class User {
+
+    public enum Role {
+        SUPER_ADMIN,
+        ADMIN,
+        STAFF
+    }
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long userId;
+
+    private String name;
+    private String surname;
+
+    @Column(unique = true, nullable = false)
+    private String email;
+
+
+    /**
+     * User role (e.g., "ROLE_ADMIN", "ROLE_STAFF").
+     * Used for authorization and access control.
+     */
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
+    /**
+     * Indicates if the account is active.
+     * Inactive accounts cannot authenticate.
+     */
+    @Builder.Default
+    private Boolean active = true;
+
+    // One user may have many notifications
+    @JsonIgnore
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
+    private List<Notification> notifications = new ArrayList<>();
+
+
+}

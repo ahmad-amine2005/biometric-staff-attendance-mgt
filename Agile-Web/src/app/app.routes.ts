@@ -4,21 +4,22 @@ import { SignupComponent } from './pages/signup/signup';
 import { Login } from './pages/login/login';
 
 export const routes: Routes = [
-
-  // Default root → signup
+// Default root → login
   {
     path: '',
-    redirectTo: 'signup',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
 
-  // Auth page (standalone, no layout)
+  // Auth pages (standalone, no layout)
+  {
+    path: 'login',
+    component: Login   // or loadComponent if Login is standalone
+  },
   {
     path: 'signup',
-    loadComponent: () => import('./pages/signup/signup')
-        .then(m => m.SignupComponent) // ensure this is the exported name
+    component: SignupComponent   // or loadComponent if Signup is standalone
   },
-
 
   {
     path: '',
@@ -59,15 +60,6 @@ export const routes: Routes = [
     ]
   },
 
-  {
-    path: 'signup',
-    component: SignupComponent
-  },
-
-  {
-    path: 'login',
-    component: Login
-  },
 
   {
     // Fallback route - redirect any unknown path to dashboard

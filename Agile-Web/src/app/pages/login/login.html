@@ -17,14 +17,14 @@
     </div>
 
     <!-- Form -->
-    <form (ngSubmit)="onSignup()">
+    <form (ngSubmit)="onSignIn()">
       <app-input-field
-        icon="user"
+        icon="mail"
         type="text"
-        placeholder="Enter your employee ID (e.g., EMP001)"
-        label="Employee ID"
-        [value]="employeeId"
-        (valueChange)="employeeId = $event"
+        placeholder="Enter your email"
+        label="Email"
+        [value]="email"
+        (valueChange)="email = $event"
       ></app-input-field>
 
 
@@ -37,10 +37,16 @@
         (valueChange)="password = $event"
       ></app-input-field>
 
+      <div class="form-group">
+        <div class="error-message" *ngIf="loginError">
+          {{ loginError }}
+        </div>
+      </div>
+
 
       <!-- Submit Button -->
       <div class="submit-button-wrapper">
-        <app-button type="submit" (clicked)="onSignup()">
+        <app-button type="submit" (clicked)="onSignIn()">
           Login
         </app-button>
       </div>

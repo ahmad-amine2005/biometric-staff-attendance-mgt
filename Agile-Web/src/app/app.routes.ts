@@ -3,6 +3,21 @@ import { SignupComponent } from './pages/signup/signup';
 
 export const routes: Routes = [
 
+  // Default root → signup
+  {
+    path: '',
+    redirectTo: 'signup',
+    pathMatch: 'full'
+  },
+
+  // Auth page (standalone, no layout)
+  {
+    path: 'signup',
+    loadComponent: () => import('./pages/signup/signup')
+        .then(m => m.SignupComponent) // ensure this is the exported name
+  },
+
+
   {
     path: '',
     loadComponent: () => import('./components/layout/layout')

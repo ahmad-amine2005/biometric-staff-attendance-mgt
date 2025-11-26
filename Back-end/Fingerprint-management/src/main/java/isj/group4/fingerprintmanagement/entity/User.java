@@ -13,7 +13,15 @@ import java.util.ArrayList;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+
 public class User {
+
+    public enum Role {
+        SUPER_ADMIN,
+        ADMIN,
+        STAFF
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
@@ -23,7 +31,6 @@ public class User {
 
     @Column(unique = true, nullable = false)
     private String email;
-
 
 
     /**
@@ -46,14 +53,6 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     @Builder.Default
     private List<Notification> notifications = new ArrayList<>();
-
-
-
-    public enum Role {
-        SUPER_ADMIN,
-        ADMIN,
-        STAFF
-    }
 
 
 }

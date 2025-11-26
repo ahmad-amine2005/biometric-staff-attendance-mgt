@@ -5,10 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ac8ee66-3e27-4bde-8182-e73b79ef6a75" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/.tsbuildinfo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/app.routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/src/app/app.routes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/src/main/java/isj/group4/fingerprintmanagement/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/src/main/java/isj/group4/fingerprintmanagement/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/src/main/java/isj/group4/fingerprintmanagement/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/src/main/java/isj/group4/fingerprintmanagement/controller/AdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/src/main/java/isj/group4/fingerprintmanagement/dto/AdminLoginResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/src/main/java/isj/group4/fingerprintmanagement/dto/AdminLoginResponseDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/src/main/java/isj/group4/fingerprintmanagement/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/src/main/java/isj/group4/fingerprintmanagement/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/src/main/java/isj/group4/fingerprintmanagement/services/AdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/src/main/java/isj/group4/fingerprintmanagement/services/AdminService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/config/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/config/SecurityConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/dto/AdminLoginResponseDTO$AdminLoginResponseDTOBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/dto/AdminLoginResponseDTO$AdminLoginResponseDTOBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/dto/AdminLoginResponseDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/dto/AdminLoginResponseDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/entity/User$UserBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/entity/User$UserBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/entity/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/entity/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/services/AdminService.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/services/AdminService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/services/DepartmentService.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/services/DepartmentService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,6 +67,10 @@
     &quot;accountId&quot;: &quot;f6fcf6aa-f273-43ce-a574-63e997b62204&quot;
   }
 }</component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
 }</component>
@@ -75,7 +91,7 @@
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;Spring Boot.FingerprintManagementApplication.executor&quot;: &quot;Run&quot;,
     &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;backend/yann&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/authentication&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
@@ -88,6 +104,7 @@
     &quot;npm.ng.executor&quot;: &quot;Run&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;D:\\Projects\\biometric-staff-attendance-mgt\\Agile-Web\\node_modules\\typescript\\lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -127,11 +144,12 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.26830.84" />
-        <option value="bundled-js-predefined-d6986cc7102b-3aa1da707db6-JavaScript-IU-252.26830.84" />
+        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.26053.27" />
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.26053.27" />
       </set>
     </attachedChunks>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="1ac8ee66-3e27-4bde-8182-e73b79ef6a75" name="Changes" comment="" />
@@ -144,6 +162,7 @@
       <workItem from="1763807424345" duration="318000" />
       <workItem from="1763814897440" duration="688000" />
       <workItem from="1763902219508" duration="3308000" />
+      <workItem from="1764120328914" duration="514000" />
     </task>
     <servers />
   </component>

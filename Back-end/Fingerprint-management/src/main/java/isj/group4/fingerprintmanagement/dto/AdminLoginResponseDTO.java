@@ -25,6 +25,18 @@ public class AdminLoginResponseDTO implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
+//    @Builder
+//    public AdminLoginResponseDTO(String accessToken, String tokenType, Long expiresIn,
+//                                 LocalDateTime issuedAt, LocalDateTime expiresAt,
+//                                 Admin admin) {
+//        this.accessToken = accessToken;
+//        this.tokenType = tokenType;
+//        this.expiresIn = expiresIn;
+//        this.issuedAt = issuedAt;
+//        this.expiresAt = expiresAt;
+//        this.admin = admin;
+//    }
+
     /** JWT access token for API authentication */
     private String accessToken;
 

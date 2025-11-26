@@ -72,14 +72,14 @@ public class AdminService {
             UserDetails userDetails = userDetailsService.loadUserByUsername(loginRequest.getEmail());
 
             // Find admin by email
-            Admin admin = adminRepo.findByEmail(userDetails.getUsername())
+            Admin ad = adminRepo.findByEmail(userDetails.getUsername())
                     .orElseThrow(() -> {
                         log.warn("Authentication failed: Admin not found with email: {}", loginRequest.getEmail());
                         return new BadCredentialsException("Invalid email or password");
                     });
 
             // Check if account is active
-            if (!admin.getActive()) {
+            if (!ad.getActive()) {
                 log.warn("Authentication failed: Admin account is inactive for email: {}", loginRequest.getEmail());
                 throw new BadCredentialsException("Account is inactive. Please contact administrator.");
             }
@@ -102,7 +102,7 @@ public class AdminService {
             LocalDateTime issuedAt = LocalDateTime.now();
             LocalDateTime expiresAt = issuedAt.plusSeconds(expiresIn);
 
-            log.info("Authentication successful for admin: {} (ID: {})", admin.getEmail(), admin.getUserId());
+            log.info("Authentication successful for admin: {} (ID: {})", ad.getEmail(), ad.getUserId());
 
             // Build and return response DTO
             return AdminLoginResponseDTO.builder()
@@ -111,7 +111,7 @@ public class AdminService {
                     .expiresIn(expiresIn)
                     .issuedAt(issuedAt)
                     .expiresAt(expiresAt)
-                    .admin(admin)
+                    .admin(ad)
                     .build();
         } catch (BadCredentialsException ex) {
             log.warn("Authentication failed for email: {}", loginRequest.getEmail());
@@ -353,23 +353,5 @@ public class AdminService {
      * @param admin the admin to generate token for
      * @return the generated token
      */
-    private String generateToken(Admin admin) {
-        // TODO: Implement proper JWT token generation
-        // For now, return a simple token (NOT SECURE - for development only)
-        return "mock_token_" + admin.getUserId() + "_" + System.currentTimeMillis();
 
-        // Production implementation should use:
-        // - JWT library (io.jsonwebtoken:jjwt)
-        // - Sign with secret key
-        // - Include claims: userId, email, role, expiration
-        // Example:
-        // return Jwts.builder()
-        //     .setSubject(admin.getEmail())
-        //     .claim("userId", admin.getUserId())
-        //     .claim("role", admin.getRole())
-        //     .setIssuedAt(new Date())
-        //     .setExpiration(new Date(System.currentTimeMillis() + expiresIn * 1000))
-        //     .signWith(SignatureAlgorithm.HS512, jwtSecret)
-        //     .compact();
-    }
 }

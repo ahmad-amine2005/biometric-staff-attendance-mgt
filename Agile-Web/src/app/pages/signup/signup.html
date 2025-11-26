@@ -21,11 +21,26 @@
       <app-input-field
         icon="user"
         type="text"
-        placeholder="Enter your employee ID (e.g., EMP001)"
-        label="Employee ID"
-        [value]="employeeId"
-        (valueChange)="employeeId = $event"
+        placeholder="Enter your name"
+        label="name"
+        [value]="name"
+        (valueChange)="name = $event"
       ></app-input-field>
+      <div class="error-message" *ngIf="signupError && signupError.includes('field')">
+        {{ signupError }}
+      </div>
+
+      <app-input-field
+        icon="user"
+        type="text"
+        placeholder="Enter your surname"
+        label="surname"
+        [value]="surname"
+        (valueChange)="surname = $event"
+      ></app-input-field>
+      <div class="error-message" *ngIf="signupError && signupError.includes('surname')">
+        {{ signupError }}
+      </div>
 
       <app-input-field
         icon="mail"
@@ -35,6 +50,9 @@
         [value]="email"
         (valueChange)="email = $event"
       ></app-input-field>
+      <div class="error-message" *ngIf="signupError && signupError.includes('email')">
+        {{ signupError }}
+      </div>
 
       <app-input-field
         icon="lock"
@@ -44,6 +62,9 @@
         [value]="password"
         (valueChange)="password = $event"
       ></app-input-field>
+      <div class="error-message" *ngIf="signupError && signupError.includes('password')">
+        {{ signupError }}
+      </div>
 
       <app-input-field
         icon="lock"
@@ -53,10 +74,19 @@
         [value]="confirmPassword"
         (valueChange)="confirmPassword = $event"
       ></app-input-field>
+      <div class="error-message" *ngIf="showPasswordError && !passwordsMatch">
+        Passwords do not match
+      </div>
+
+      <div class="form-group">
+        <div class="error-message" *ngIf="resultError">
+          {{ resultError }}
+        </div>
+      </div>
 
       <!-- Submit Button -->
       <div class="submit-button-wrapper">
-        <app-button type="submit" (clicked)="onSignup()">
+        <app-button type="submit">
           Sign Up
         </app-button>
       </div>

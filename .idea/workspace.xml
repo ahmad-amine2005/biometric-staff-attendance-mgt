@@ -6,20 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="1ac8ee66-3e27-4bde-8182-e73b79ef6a75" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/.tsbuildinfo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/@angular_common.js" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/@angular_common.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/@angular_forms.js" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/@angular_forms.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/@angular_forms.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/@angular_forms.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/@angular_platform-browser.js" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/@angular_platform-browser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/@angular_router.js" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/@angular_router.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/@angular_router.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/@angular_router.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/_metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/_metadata.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps_ssr/_metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps_ssr/_metadata.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/app.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/src/app/app.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/app.routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/src/app/app.routes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/admin.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/src/app/admin.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/pages/login/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/src/app/pages/login/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/pages/login/login.scss" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/src/app/pages/login/login.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/pages/login/login.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/src/app/pages/login/login.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/pages/signup/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/src/app/pages/signup/signup.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/pages/signup/signup.scss" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/src/app/pages/signup/signup.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/pages/signup/signup.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/src/app/pages/signup/signup.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -169,7 +160,7 @@
       <workItem from="1763807424345" duration="318000" />
       <workItem from="1763814897440" duration="688000" />
       <workItem from="1763902219508" duration="3308000" />
-      <workItem from="1764120328914" duration="5007000" />
+      <workItem from="1764120328914" duration="7340000" />
     </task>
     <servers />
   </component>

@@ -7,25 +7,32 @@
     <list default="true" id="1ac8ee66-3e27-4bde-8182-e73b79ef6a75" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/.tsbuildinfo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/@angular_common.js" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/@angular_common.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/@angular_forms.js" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/@angular_forms.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/@angular_forms.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/@angular_forms.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/@angular_platform-browser.js" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/@angular_platform-browser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/@angular_router.js" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/@angular_router.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/@angular_router.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/@angular_router.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/_metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/_metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps_ssr/_metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps_ssr/_metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/app.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/src/app/app.config.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/app.routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/src/app/app.routes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/src/main/java/isj/group4/fingerprintmanagement/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/src/main/java/isj/group4/fingerprintmanagement/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/src/main/java/isj/group4/fingerprintmanagement/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/src/main/java/isj/group4/fingerprintmanagement/controller/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/src/main/java/isj/group4/fingerprintmanagement/dto/AdminLoginResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/src/main/java/isj/group4/fingerprintmanagement/dto/AdminLoginResponseDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/src/main/java/isj/group4/fingerprintmanagement/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/src/main/java/isj/group4/fingerprintmanagement/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/src/main/java/isj/group4/fingerprintmanagement/services/AdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/src/main/java/isj/group4/fingerprintmanagement/services/AdminService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/config/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/config/SecurityConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/dto/AdminLoginResponseDTO$AdminLoginResponseDTOBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/dto/AdminLoginResponseDTO$AdminLoginResponseDTOBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/dto/AdminLoginResponseDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/dto/AdminLoginResponseDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/entity/User$UserBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/entity/User$UserBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/entity/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/entity/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/services/AdminService.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/services/AdminService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/services/DepartmentService.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/services/DepartmentService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/pages/login/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/src/app/pages/login/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/pages/login/login.scss" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/src/app/pages/login/login.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/pages/login/login.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/src/app/pages/login/login.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -162,7 +169,7 @@
       <workItem from="1763807424345" duration="318000" />
       <workItem from="1763814897440" duration="688000" />
       <workItem from="1763902219508" duration="3308000" />
-      <workItem from="1764120328914" duration="514000" />
+      <workItem from="1764120328914" duration="5007000" />
     </task>
     <servers />
   </component>

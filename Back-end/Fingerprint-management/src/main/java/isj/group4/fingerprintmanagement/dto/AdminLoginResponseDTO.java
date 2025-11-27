@@ -1,5 +1,7 @@
 package isj.group4.fingerprintmanagement.dto;
 
+import isj.group4.fingerprintmanagement.entity.Admin;
+import isj.group4.fingerprintmanagement.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,20 +25,17 @@ public class AdminLoginResponseDTO implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
-    /** Admin user ID from database */
-    private Long userId;
-
-    /** Admin email (used as principal identifier) */
-    private String email;
-
-    /** Admin first name */
-    private String name;
-
-    /** Admin surname/last name */
-    private String surname;
-
-    /** Full display name (computed) */
-    private String fullName;
+//    @Builder
+//    public AdminLoginResponseDTO(String accessToken, String tokenType, Long expiresIn,
+//                                 LocalDateTime issuedAt, LocalDateTime expiresAt,
+//                                 Admin admin) {
+//        this.accessToken = accessToken;
+//        this.tokenType = tokenType;
+//        this.expiresIn = expiresIn;
+//        this.issuedAt = issuedAt;
+//        this.expiresAt = expiresAt;
+//        this.admin = admin;
+//    }
 
     /** JWT access token for API authentication */
     private String accessToken;
@@ -54,12 +53,8 @@ public class AdminLoginResponseDTO implements Serializable {
     /** Timestamp when the token expires */
     private LocalDateTime expiresAt;
 
-    /** Admin role/authority (e.g., "ROLE_ADMIN", "ROLE_SUPER_ADMIN") */
-    private String role;
+    private Admin admin;
 
-    /** Success message */
-    @Builder.Default
-    private String message = "Login successful";
 }
 
 

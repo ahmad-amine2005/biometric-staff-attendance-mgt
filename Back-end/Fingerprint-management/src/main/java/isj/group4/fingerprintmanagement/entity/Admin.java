@@ -22,14 +22,14 @@ public class Admin extends User {
     /**
      * Constructor for creating admin with full details.
      */
-    public Admin(Long userId, String name, String surname, String email, String role, Boolean active) {
-        super(userId, name, surname, email, role, active, null, null);
-    }
+//    public Admin(Long userId, String name, String surname, String email, String role, Boolean active) {
+//        super(userId, name, surname, email, role, active, null, null);
+//    }
 
     /**
      * Simplified constructor for new admin creation.
      */
-    public Admin(String name, String surname, String email) {
-        super(null, name, surname, email, "ROLE_ADMIN", true, null, null);
-    }
+//    public Admin(String name, String surname, String email) {
+//        super(null, name, surname, email, "ROLE_ADMIN", true, null, null);
+//    }
 }

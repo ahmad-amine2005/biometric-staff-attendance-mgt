@@ -18,6 +18,6 @@ public class Fingerprint {
     private String fingerCode;
 
     @OneToOne
-    @JoinColumn(name = "user_id", unique = true)
-    private User user;
+    @JoinColumn(name = "staff_id", unique = true)
+    private Staff staff;
 }

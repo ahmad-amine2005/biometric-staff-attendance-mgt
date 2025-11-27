@@ -1,11 +1,20 @@
 package isj.group4.fingerprintmanagement.services;
 
+import isj.group4.fingerprintmanagement.config.JwtUtil;
 import isj.group4.fingerprintmanagement.dto.AdminLoginRequestDTO;
 import isj.group4.fingerprintmanagement.dto.AdminLoginResponseDTO;
 import isj.group4.fingerprintmanagement.entity.Admin;
+import isj.group4.fingerprintmanagement.entity.User;
 import isj.group4.fingerprintmanagement.repository.AdminRepo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,6 +22,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+
+
 
 /**
  * Service layer for Admin operations including authentication, CRUD, and business logic.
@@ -23,10 +34,20 @@ import java.util.Optional;
 @Log4j2
 public class AdminService {
 
+    @Autowired
     private final AdminRepo adminRepo;
     private final AttendanceService attendanceService;
     private final ContractService contractService;
     private final PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private final JwtUtil jwtUtil;
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private UserDetailsService userDetailsService;
 
     // Token expiration constants
     private static final long SHORT_TOKEN_EXPIRY_SECONDS = 900; // 15 minutes
@@ -41,51 +62,65 @@ public class AdminService {
      */
     @Transactional(readOnly = true)
     public AdminLoginResponseDTO authenticateAdmin(AdminLoginRequestDTO loginRequest) {
-        log.info("Authentication attempt for admin with email: {}", loginRequest.getEmail());
+        try {
+            log.info("Authentication attempt for admin with email: {}", loginRequest.getEmail());
 
-        // Find admin by email
-        Admin admin = adminRepo.findByEmail(loginRequest.getEmail())
-                .orElseThrow(() -> {
-                    log.warn("Authentication failed: Admin not found with email: {}", loginRequest.getEmail());
-                    return new IllegalArgumentException("Invalid email or password");
-                });
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword())
+            );
 
-        // Check if account is active
-        if (!admin.getActive()) {
-            log.warn("Authentication failed: Admin account is inactive for email: {}", loginRequest.getEmail());
-            throw new IllegalArgumentException("Account is inactive. Please contact administrator.");
+            UserDetails userDetails = userDetailsService.loadUserByUsername(loginRequest.getEmail());
+
+            // Find admin by email
+            Admin ad = adminRepo.findByEmail(userDetails.getUsername())
+                    .orElseThrow(() -> {
+                        log.warn("Authentication failed: Admin not found with email: {}", loginRequest.getEmail());
+                        return new BadCredentialsException("Invalid email or password");
+                    });
+
+            // Check if account is active
+            if (!ad.getActive()) {
+                log.warn("Authentication failed: Admin account is inactive for email: {}", loginRequest.getEmail());
+                throw new BadCredentialsException("Account is inactive. Please contact administrator.");
+            }
+
+//        // Verify password
+//        if (!passwordEncoder.matches(loginRequest.getPassword(), admin.getPassword())) {
+//            log.warn("Authentication failed: Invalid password for email: {}", loginRequest.getEmail());
+//            throw new IllegalArgumentException("Invalid email or password");
+//        }
+
+            // Generate JWT access token using JwtUtil
+            String accessToken = jwtUtil.generateToken(userDetails.getUsername());
+
+            // Decide expiry based on "remember me" flag
+            long expiresIn = loginRequest.isRememberMe()
+                    ? LONG_TOKEN_EXPIRY_SECONDS
+                    : SHORT_TOKEN_EXPIRY_SECONDS;
+
+
+            LocalDateTime issuedAt = LocalDateTime.now();
+            LocalDateTime expiresAt = issuedAt.plusSeconds(expiresIn);
+
+            log.info("Authentication successful for admin: {} (ID: {})", ad.getEmail(), ad.getUserId());
+
+            // Build and return response DTO
+            return AdminLoginResponseDTO.builder()
+                    .accessToken(accessToken)
+                    .tokenType("Bearer")
+                    .expiresIn(expiresIn)
+                    .issuedAt(issuedAt)
+                    .expiresAt(expiresAt)
+                    .admin(ad)
+                    .build();
+        } catch (BadCredentialsException ex) {
+            log.warn("Authentication failed for email: {}", loginRequest.getEmail());
+            throw ex; // Spring Security will translate this into 401 Unauthorized
+        } catch (Exception ex) {
+            log.error("Unexpected error during authentication for email: {}", loginRequest.getEmail(), ex);
+            throw new RuntimeException("Authentication failed due to server error");
         }
 
-        // Verify password
-        if (!passwordEncoder.matches(loginRequest.getPassword(), admin.getPassword())) {
-            log.warn("Authentication failed: Invalid password for email: {}", loginRequest.getEmail());
-            throw new IllegalArgumentException("Invalid email or password");
-        }
-
-        // Generate token (in a real application, use JWT)
-        String accessToken = generateToken(admin);
-        long expiresIn = loginRequest.isRememberMe() ? LONG_TOKEN_EXPIRY_SECONDS : SHORT_TOKEN_EXPIRY_SECONDS;
-
-        LocalDateTime issuedAt = LocalDateTime.now();
-        LocalDateTime expiresAt = issuedAt.plusSeconds(expiresIn);
-
-        log.info("Authentication successful for admin: {} (ID: {})", admin.getEmail(), admin.getUserId());
-
-        // Build and return response DTO
-        return AdminLoginResponseDTO.builder()
-                .userId(admin.getUserId())
-                .email(admin.getEmail())
-                .name(admin.getName())
-                .surname(admin.getSurname())
-                .fullName(admin.getName() + " " + admin.getSurname())
-                .accessToken(accessToken)
-                .tokenType("Bearer")
-                .expiresIn(expiresIn)
-                .issuedAt(issuedAt)
-                .expiresAt(expiresAt)
-                .role(admin.getRole())
-                .message("Login successful")
-                .build();
     }
 
     /**
@@ -109,8 +144,8 @@ public class AdminService {
         admin.setPassword(passwordEncoder.encode(admin.getPassword()));
 
         // Set default role if not set
-        if (admin.getRole() == null || admin.getRole().isEmpty()) {
-            admin.setRole("ROLE_ADMIN");
+        if (admin.getRole() == null) {
+            admin.setRole(User.Role.ADMIN);
         }
 
         // Set active by default
@@ -318,23 +353,5 @@ public class AdminService {
      * @param admin the admin to generate token for
      * @return the generated token
      */
-    private String generateToken(Admin admin) {
-        // TODO: Implement proper JWT token generation
-        // For now, return a simple token (NOT SECURE - for development only)
-        return "mock_token_" + admin.getUserId() + "_" + System.currentTimeMillis();
 
-        // Production implementation should use:
-        // - JWT library (io.jsonwebtoken:jjwt)
-        // - Sign with secret key
-        // - Include claims: userId, email, role, expiration
-        // Example:
-        // return Jwts.builder()
-        //     .setSubject(admin.getEmail())
-        //     .claim("userId", admin.getUserId())
-        //     .claim("role", admin.getRole())
-        //     .setIssuedAt(new Date())
-        //     .setExpiration(new Date(System.currentTimeMillis() + expiresIn * 1000))
-        //     .signWith(SignatureAlgorithm.HS512, jwtSecret)
-        //     .compact();
-    }
 }

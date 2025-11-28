@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance API Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 10px;
+        }
+        button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f9f9f9;
+            border-left: 4px solid #4CAF50;
+            border-radius: 4px;
+            white-space: pre-wrap;
+            font-family: monospace;
+            font-size: 12px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .error {
+            border-left-color: #f44336;
+            background: #ffebee;
+        }
+        .success {
+            border-left-color: #4CAF50;
+            background: #e8f5e9;
+        }
+        .status {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        .status.online {
+            background: #4CAF50;
+            color: white;
+        }
+        .status.offline {
+            background: #f44336;
+            color: white;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Attendance API Connection Test</h1>
+
+        <div>
+            <h3>Server Status: <span id="status" class="status offline">Checking...</span></h3>
+            <p><strong>API URL:</strong> <code id="apiUrl">http://localhost:8080/api/attendance</code></p>
+        </div>
+
+        <div style="margin: 20px 0;">
+            <h3>Quick Tests</h3>
+            <button onclick="testConnection()">Test Connection</button>
+            <button onclick="getAllAttendances()">Get All Attendances</button>
+            <button onclick="getAttendancesByDate()">Get Today's Attendances</button>
+            <button onclick="recordSampleAttendance()">Record Sample Attendance</button>
+        </div>
+
+        <div id="result"></div>
+        <div id="tableContainer"></div>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:8080/api/attendance';
+
+        // Test connection on page load
+        window.onload = () => {
+            testConnection();
+        };
+
+        async function testConnection() {
+            showResult('Testing connection to backend...', 'info');
+            const statusEl = document.getElementById('status');
+
+            try {
+                const response = await fetch(API_URL);
+                if (response.ok) {
+                    statusEl.textContent = 'Online ✓';
+                    statusEl.className = 'status online';
+                    showResult('✅ Connection successful! Backend is running.', 'success');
+                } else {
+                    statusEl.textContent = 'Error';
+                    statusEl.className = 'status offline';
+                    showResult(`❌ Server returned status: ${response.status}`, 'error');
+                }
+            } catch (error) {
+                statusEl.textContent = 'Offline ✗';
+                statusEl.className = 'status offline';
+                showResult(`❌ Connection failed: ${error.message}\n\nMake sure the backend server is running on port 8080.`, 'error');
+            }
+        }
+
+        async function getAllAttendances() {
+            showResult('Fetching all attendance records...', 'info');
+
+            try {
+                const response = await fetch(API_URL);
+                const data = await response.json();
+
+                if (response.ok) {
+                    showResult(`✅ Successfully retrieved ${data.length} attendance records`, 'success');
+                    displayAttendanceTable(data);
+                } else {
+                    showResult(`❌ Error: ${JSON.stringify(data, null, 2)}`, 'error');
+                }
+            } catch (error) {
+                showResult(`❌ Request failed: ${error.message}`, 'error');
+            }
+        }
+
+        async function getAttendancesByDate() {
+            const today = new Date().toISOString().split('T')[0];
+            showResult(`Fetching attendance records for ${today}...`, 'info');
+
+            try {
+                const response = await fetch(`${API_URL}/date/${today}`);
+                const data = await response.json();
+
+                if (response.ok) {
+                    showResult(`✅ Successfully retrieved ${data.length} attendance records for today`, 'success');
+                    displayAttendanceTable(data);
+                } else {
+                    showResult(`❌ Error: ${JSON.stringify(data, null, 2)}`, 'error');
+                }
+            } catch (error) {
+                showResult(`❌ Request failed: ${error.message}`, 'error');
+            }
+        }
+
+        async function recordSampleAttendance() {
+            const now = new Date();
+            const date = now.toISOString().split('T')[0];
+            const time = now.toISOString().split('.')[0];
+
+            const requestBody = {
+                staffId: 1,
+                attendanceDate: date,
+                attendanceTime: time
+            };
+
+            showResult(`Recording attendance...\n${JSON.stringify(requestBody, null, 2)}`, 'info');
+
+            try {
+                const response = await fetch(`${API_URL}/record`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(requestBody)
+                });
+
+                const data = await response.json();
+
+                if (response.ok || response.status === 201) {
+                    showResult(`✅ Attendance recorded successfully!\n\n${JSON.stringify(data, null, 2)}`, 'success');
+                } else {
+                    showResult(`❌ Failed to record attendance:\n${JSON.stringify(data, null, 2)}`, 'error');
+                }
+            } catch (error) {
+                showResult(`❌ Request failed: ${error.message}`, 'error');
+            }
+        }
+
+        function showResult(message, type) {
+            const resultDiv = document.getElementById('result');
+            resultDiv.textContent = message;
+            resultDiv.className = `result ${type}`;
+        }
+
+        function displayAttendanceTable(attendances) {
+            const container = document.getElementById('tableContainer');
+
+            if (attendances.length === 0) {
+                container.innerHTML = '<p>No attendance records found.</p>';
+                return;
+            }
+
+            let html = '<h3>Attendance Records</h3><table>';
+            html += '<thead><tr>';
+            html += '<th>ID</th>';
+            html += '<th>Date</th>';
+            html += '<th>Staff Name</th>';
+            html += '<th>Department</th>';
+            html += '<th>Arrival</th>';
+            html += '<th>Departure</th>';
+            html += '<th>Status</th>';
+            html += '</tr></thead><tbody>';
+
+            attendances.forEach(att => {
+                html += '<tr>';
+                html += `<td>${att.attendanceId}</td>`;
+                html += `<td>${att.attendanceDate}</td>`;
+                html += `<td>${att.staffName} ${att.staffSurname}</td>`;
+                html += `<td>${att.departmentName || 'N/A'}</td>`;
+                html += `<td>${att.arrivalTime ? formatTime(att.arrivalTime) : '-'}</td>`;
+                html += `<td>${att.departureTime ? formatTime(att.departureTime) : '-'}</td>`;
+                html += `<td><span style="padding: 4px 8px; border-radius: 4px; background: ${getStatusColor(att.status)}; color: white; font-size: 11px;">${att.status}</span></td>`;
+                html += '</tr>';
+            });
+
+            html += '</tbody></table>';
+            container.innerHTML = html;
+        }
+
+        function formatTime(datetime) {
+            try {
+                const date = new Date(datetime);
+                return date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+            } catch {
+                return datetime;
+            }
+        }
+
+        function getStatusColor(status) {
+            const colors = {
+                'COMPLETE': '#4CAF50',
+                'ARRIVAL_RECORDED': '#2196F3',
+                'DEPARTURE_RECORDED': '#FF9800',
+                'INCOMPLETE': '#f44336'
+            };
+            return colors[status] || '#999';
+        }
+    </script>
+</body>
+</html>
+

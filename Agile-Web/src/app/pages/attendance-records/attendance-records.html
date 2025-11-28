@@ -13,24 +13,49 @@
     <div class="filters-content">
       <div class="search-wrapper">
         <span class="search-icon">🔍</span>
-        <input 
-          type="text" 
+        <input
+          type="text"
           [(ngModel)]="searchQuery"
           placeholder="Search by name, department, or date..."
           class="search-input">
       </div>
-      
-      <button 
-        (click)="exportRecords()"
-        class="btn-export">
-        <span class="export-icon">⬇</span>
-        <span>Export</span>
-      </button>
+
+      <div style="display: flex; gap: 10px; align-items: center;">
+        <button
+          (click)="refreshAttendance()"
+          class="btn-export"
+          [disabled]="isLoading">
+          <span>🔄</span>
+          <span>Refresh</span>
+        </button>
+
+        <button
+          (click)="exportRecords()"
+          class="btn-export"
+          [disabled]="isLoading || filteredRecords.length === 0">
+          <span class="export-icon">⬇</span>
+          <span>Export</span>
+        </button>
+      </div>
     </div>
   </div>
 
+  <!-- Loading State -->
+  <div *ngIf="isLoading" style="text-align: center; padding: 40px; color: #666;">
+    <div style="font-size: 24px; margin-bottom: 10px;">⏳</div>
+    <p>Loading attendance records...</p>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="errorMessage && !isLoading" style="background: #fee; border: 1px solid #fcc; border-radius: 8px; padding: 20px; margin: 20px 0; color: #c33;">
+    <strong>Error:</strong> {{ errorMessage }}
+    <button (click)="refreshAttendance()" style="margin-left: 10px; padding: 5px 10px; background: #c33; color: white; border: none; border-radius: 4px; cursor: pointer;">
+      Retry
+    </button>
+  </div>
+
   <!-- Attendance Table -->
-  <div class="table-container">
+  <div class="table-container" *ngIf="!isLoading && !errorMessage">
     <table class="attendance-table">
       <thead>
         <tr>

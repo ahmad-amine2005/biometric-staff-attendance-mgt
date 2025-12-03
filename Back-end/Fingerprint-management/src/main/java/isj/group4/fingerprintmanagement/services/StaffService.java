@@ -5,6 +5,7 @@ import isj.group4.fingerprintmanagement.dto.StaffResponseDTO;
 import isj.group4.fingerprintmanagement.dto.StaffUpdateDTO;
 import isj.group4.fingerprintmanagement.entity.Department;
 import isj.group4.fingerprintmanagement.entity.Staff;
+import isj.group4.fingerprintmanagement.entity.User;
 import isj.group4.fingerprintmanagement.repository.DepartmentRepo;
 import isj.group4.fingerprintmanagement.repository.StaffRepo;
 import lombok.RequiredArgsConstructor;
@@ -59,7 +60,7 @@ public class StaffService {
         staff.setName(staffRequest.getName());
         staff.setSurname(staffRequest.getSurname());
         staff.setEmail(staffRequest.getEmail());
-        staff.setRole(staffRequest.getRole() != null ? staffRequest.getRole() : "ROLE_STAFF");
+        staff.setRole(staffRequest.getRole() != null ? staffRequest.getRole() : User.Role.STAFF);
         staff.setActive(staffRequest.getActive() != null ? staffRequest.getActive() : true);
         staff.setNoAbsence(staffRequest.getNoAbsence() != null ? staffRequest.getNoAbsence() : 0);
         staff.setDepartment(department);
@@ -342,14 +343,7 @@ public class StaffService {
      */
     private StaffResponseDTO mapToResponseDTO(Staff staff) {
         return StaffResponseDTO.builder()
-                .userId(staff.getUserId())
-                .name(staff.getName())
-                .surname(staff.getSurname())
-                .email(staff.getEmail())
-                .fullName(staff.getName() + " " + staff.getSurname())
-                .noAbsence(staff.getNoAbsence())
-                .role(staff.getRole())
-                .active(staff.getActive())
+                .staff(staff)
                 .departmentId(staff.getDepartment() != null ? staff.getDepartment().getDpmtId() : null)
                 .departmentName(staff.getDepartment() != null ? staff.getDepartment().getDpmtName() : null)
                 .contractId(staff.getContract() != null ? staff.getContract().getContractId() : null)

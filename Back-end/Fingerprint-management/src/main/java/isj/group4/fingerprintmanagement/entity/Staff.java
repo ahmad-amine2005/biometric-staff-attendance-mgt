@@ -27,4 +27,8 @@ public class Staff extends User {
     // One-to-one contract
     @OneToOne(mappedBy = "staff", cascade = CascadeType.ALL, orphanRemoval = true)
     private Contract contract;
+
+    // Optional one-to-one fingerprint
+    @OneToOne(mappedBy = "staff", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Fingerprint fingerprint;
 }

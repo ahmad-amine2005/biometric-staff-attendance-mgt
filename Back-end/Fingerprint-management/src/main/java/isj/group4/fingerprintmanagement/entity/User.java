@@ -1,5 +1,6 @@
 package isj.group4.fingerprintmanagement.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import java.util.List;
@@ -12,7 +13,15 @@ import java.util.ArrayList;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+
 public class User {
+
+    public enum Role {
+        SUPER_ADMIN,
+        ADMIN,
+        STAFF
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
@@ -24,13 +33,13 @@ public class User {
     private String email;
 
 
-
     /**
      * User role (e.g., "ROLE_ADMIN", "ROLE_STAFF").
      * Used for authorization and access control.
      */
     @Column(nullable = false)
-    private String role;
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     /**
      * Indicates if the account is active.
@@ -40,11 +49,10 @@ public class User {
     private Boolean active = true;
 
     // One user may have many notifications
+    @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     @Builder.Default
     private List<Notification> notifications = new ArrayList<>();
 
-    // Optional one-to-one fingerprint
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Fingerprint fingerprint;
+
 }

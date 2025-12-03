@@ -1,5 +1,6 @@
 package isj.group4.fingerprintmanagement.dto;
 
+import isj.group4.fingerprintmanagement.entity.User;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -42,7 +43,7 @@ public class StaffRequestDTO implements Serializable {
 
     /** Staff role (default: ROLE_STAFF) */
     @Builder.Default
-    private String role = "ROLE_STAFF";
+    private User.Role role = User.Role.STAFF;
 
     /** Account active status (default: true) */
     @Builder.Default

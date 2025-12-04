@@ -48,10 +48,46 @@
   transition: all 0.2s;
 }
 
-.btn-export-report:hover {
+.btn-export-report:hover:not(:disabled) {
   background: #2563eb;
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.btn-export-report:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.header-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.btn-refresh {
+  background: #f1f5f9;
+  color: #475569;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-refresh:hover:not(:disabled) {
+  background: #e2e8f0;
+  transform: translateY(-1px);
+}
+
+.btn-refresh:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .export-icon {
@@ -137,6 +173,12 @@
   font-size: 20px;
   font-weight: 700;
   color: #1a202c;
+  margin: 0 0 8px 0;
+}
+
+.summary-subtitle {
+  font-size: 14px;
+  color: #718096;
   margin: 0 0 24px 0;
 }
 
@@ -193,7 +235,14 @@
 .days-label {
   font-size: 12px;
   color: #a0aec0;
+  margin: 0 0 4px 0;
+}
+
+.late-info {
+  font-size: 11px;
+  color: #f59e0b;
   margin: 0;
+  font-weight: 500;
 }
 
 /* Progress Bar */
@@ -217,6 +266,18 @@
   border-radius: 10px;
   transition: width 0.3s ease;
   position: relative;
+}
+
+.progress-low {
+  background: #ef4444;
+}
+
+.progress-medium {
+  background: #f59e0b;
+}
+
+.progress-high {
+  background: #10b981;
 }
 
 .progress-fill::after {
@@ -245,6 +306,33 @@
   color: #1a202c;
   min-width: 50px;
   text-align: right;
+}
+
+/* Error Message */
+.error-message {
+  background: #fee2e2;
+  color: #991b1b;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  font-size: 14px;
+  border-left: 4px solid #ef4444;
+}
+
+/* Loading Indicator */
+.loading-indicator {
+  text-align: center;
+  padding: 24px;
+  color: #718096;
+  font-size: 14px;
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 24px;
+  color: #718096;
+  font-size: 14px;
 }
 
 /* Responsive Design */

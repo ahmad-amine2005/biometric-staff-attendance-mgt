@@ -25,50 +25,100 @@
     </div>
   </div>
 
+  <!-- Error Message (only show when no modals are open) -->
+  <div *ngIf="errorMessage && !showAddModal && !showEditModal && !showDepartmentModal && !showEditDepartmentModal && !showFingerprintModal" class="error-message">
+    {{errorMessage}}
+  </div>
+
+  <!-- Loading Indicator -->
+  <div *ngIf="isLoading" class="loading-indicator">
+    Loading...
+  </div>
+
+  <!-- Department Management Section -->
+  <div class="section-container">
+    <div class="section-header">
+      <h2 class="section-title">Departments</h2>
+      <button (click)="openDepartmentModal()" class="btn-add-staff btn-small">
+        <span class="btn-icon">+</span>
+        <span>Add Department</span>
+      </button>
+    </div>
+    <div class="table-container">
+      <table class="staff-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Total Staff</th>
+            <th>Active Staff</th>
+            <th class="text-right">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let dept of departments" class="table-row">
+            <td class="employee-id">{{dept.dpmtId}}</td>
+            <td class="staff-name">{{dept.dpmtName}}</td>
+            <td class="text-muted">{{dept.totalStaff || 0}}</td>
+            <td class="text-muted">{{dept.activeStaff || 0}}</td>
+            <td class="actions-cell">
+              <button (click)="openEditDepartmentModal(dept)" class="btn-icon-action edit-btn" title="Edit">✏️</button>
+              <button (click)="deleteDepartment(dept)" class="btn-icon-action delete-btn" title="Delete">🗑️</button>
+            </td>
+          </tr>
+          <tr *ngIf="departments.length === 0 && !isLoading">
+            <td colspan="5" class="text-center text-muted">No departments found</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
   <!-- Staff Table -->
   <div class="table-container">
     <table class="staff-table">
       <thead>
         <tr>
-          <th>Employee ID</th>
+          <th>ID</th>
           <th>Name</th>
           <th>Department</th>
           <th>Email</th>
-          <th>Shift</th>
+          <th>Role</th>
           <th>Status</th>
+          <th>Absences</th>
           <th class="text-right">Actions</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let member of filteredStaff" class="table-row">
-          <td class="employee-id">{{member.employeeId}}</td>
+          <td class="employee-id">{{member.userId}}</td>
           <td>
             <div class="name-cell">
               <div class="avatar">
-                {{getInitials(member.name)}}
+                {{getInitials(member.name, member.surname)}}
               </div>
-              <span class="staff-name">{{member.name}}</span>
+              <span class="staff-name">{{getFullName(member)}}</span>
             </div>
           </td>
-          <td class="text-muted">{{member.department}}</td>
-          <td class="text-muted">{{member.position}}</td>
-          <td class="text-muted">{{member.shift}}</td>
+          <td class="text-muted">{{member.departmentName || 'N/A'}}</td>
+          <td class="text-muted">{{member.email}}</td>
+          <td class="text-muted">{{member.role || 'N/A'}}</td>
           <td>
-            <span *ngIf="member.fingerprintRegistered" class="badge badge-registered">
-              Registered
+            <span *ngIf="member.active" class="badge badge-registered">
+              Active
             </span>
-            <button
-              *ngIf="!member.fingerprintRegistered"
-              (click)="openFingerprintModal(member)"
-              class="badge badge-register">
-              <span class="fingerprint-icon">👆</span>
-              Register
-            </button>
+            <span *ngIf="!member.active" class="badge badge-inactive">
+              Inactive
+            </span>
           </td>
+          <td class="text-muted">{{member.noAbsence || 0}}</td>
           <td class="actions-cell">
-            <button class="btn-icon-action edit-btn" title="Edit">✏️</button>
-            <button (click)="deleteStaff(member.id)" class="btn-icon-action delete-btn" title="Delete">🗑️</button>
+            <button (click)="openEditModal(member)" class="btn-icon-action edit-btn" title="Edit">✏️</button>
+            <button (click)="deleteStaff(member.userId)" class="btn-icon-action delete-btn" title="Delete">🗑️</button>
           </td>
+        </tr>
+        <tr *ngIf="filteredStaff.length === 0 && !isLoading">
+          <td colspan="8" class="text-center text-muted">No staff members found</td>
         </tr>
       </tbody>
     </table>
@@ -80,87 +130,270 @@
   <div class="modal-content" (click)="$event.stopPropagation()">
     <h2 class="modal-title">Add New Staff Member</h2>
 
+    <div *ngIf="errorMessage" class="error-message">
+      {{errorMessage}}
+    </div>
+
     <div class="form-container">
       <div class="form-row">
         <div class="form-group">
-          <label class="form-label">Employee ID</label>
-          <input
-            type="text"
-            [(ngModel)]="newStaff.employeeId"
-            class="form-input"
-            placeholder="EMP001">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Full Name</label>
+          <label class="form-label">Name <span class="required">*</span></label>
           <input
             type="text"
             [(ngModel)]="newStaff.name"
             class="form-input"
-            placeholder="John Doe">
+            placeholder="John"
+            required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Surname <span class="required">*</span></label>
+          <input
+            type="text"
+            [(ngModel)]="newStaff.surname"
+            class="form-input"
+            placeholder="Doe"
+            required>
         </div>
       </div>
 
       <div class="form-row">
         <div class="form-group">
-          <label class="form-label">Email</label>
+          <label class="form-label">Email <span class="required">*</span></label>
           <input
             type="email"
             [(ngModel)]="newStaff.email"
             class="form-input"
-            placeholder="john@company.com">
+            placeholder="john@company.com"
+            required>
         </div>
         <div class="form-group">
-          <label class="form-label">Phone</label>
-          <input
-            type="text"
-            [(ngModel)]="newStaff.phone"
+          <label class="form-label">Department <span class="required">*</span></label>
+          <select
+            [(ngModel)]="newStaff.departmentId"
             class="form-input"
-            placeholder="+1234567890">
+            required>
+            <option [value]="0">Select Department</option>
+            <option *ngFor="let dept of departments" [value]="dept.dpmtId">
+              {{dept.dpmtName}}
+            </option>
+          </select>
         </div>
       </div>
 
       <div class="form-row">
         <div class="form-group">
-          <label class="form-label">Department</label>
-          <select
-            [(ngModel)]="newStaff.department"
-            class="form-input">
-            <option value="">Select Department</option>
-            <option value="Engineering">Engineering</option>
-            <option value="Sales">Sales</option>
-            <option value="Marketing">Marketing</option>
-            <option value="Human Resources">Human Resources</option>
-            <option value="Operations">Operations</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Position</label>
+          <label class="form-label">Days Per Week (Contract) <span class="required">*</span></label>
           <input
-            type="text"
-            [(ngModel)]="newStaff.position"
+            type="number"
+            [(ngModel)]="newStaff.noDaysPerWeek_contract"
             class="form-input"
-            placeholder="Software Developer">
+            min="1"
+            max="7"
+            placeholder="5"
+            required>
         </div>
       </div>
 
-      <div class="form-group-full">
-        <label class="form-label">Shift Timing</label>
-        <input
-          type="text"
-          [(ngModel)]="newStaff.shift"
-          class="form-input"
-          placeholder="09:00 - 17:00">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Contract Start Time <span class="required">*</span></label>
+          <input
+            type="datetime-local"
+            [(ngModel)]="newStaff.startTime_contract"
+            class="form-input"
+            required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Contract End Time <span class="required">*</span></label>
+          <input
+            type="datetime-local"
+            [(ngModel)]="newStaff.endTime_contract"
+            class="form-input"
+            required>
+        </div>
       </div>
     </div>
 
     <div class="modal-actions">
       <button
         (click)="saveStaff()"
+        [disabled]="isLoading"
         class="btn-primary">
-        Add Staff Member
+        {{isLoading ? 'Creating...' : 'Add Staff Member'}}
       </button>
       <button
         (click)="closeAddModal()"
+        [disabled]="isLoading"
+        class="btn-secondary">
+        Cancel
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Staff Modal -->
+<div *ngIf="showEditModal" class="modal-overlay" (click)="closeEditModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <h2 class="modal-title">Edit Staff Member</h2>
+
+    <div *ngIf="errorMessage" class="error-message">
+      {{errorMessage}}
+    </div>
+
+    <div class="form-container">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Name <span class="required">*</span></label>
+          <input
+            type="text"
+            [(ngModel)]="editStaff.name"
+            class="form-input"
+            placeholder="John"
+            required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Surname <span class="required">*</span></label>
+          <input
+            type="text"
+            [(ngModel)]="editStaff.surname"
+            class="form-input"
+            placeholder="Doe"
+            required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Email <span class="required">*</span></label>
+          <input
+            type="email"
+            [(ngModel)]="editStaff.email"
+            class="form-input"
+            placeholder="john@company.com"
+            required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Department <span class="required">*</span></label>
+          <select
+            [(ngModel)]="editStaff.departmentId"
+            class="form-input"
+            required>
+            <option [value]="0">Select Department</option>
+            <option *ngFor="let dept of departments" [value]="dept.dpmtId">
+              {{dept.dpmtName}}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Number of Absences</label>
+          <input
+            type="number"
+            [(ngModel)]="editStaff.noAbsence"
+            class="form-input"
+            min="0"
+            placeholder="0">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Status</label>
+          <select
+            [(ngModel)]="editStaff.active"
+            class="form-input">
+            <option [value]="true">Active</option>
+            <option [value]="false">Inactive</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-actions">
+      <button
+        (click)="updateStaff()"
+        [disabled]="isLoading"
+        class="btn-primary">
+        {{isLoading ? 'Updating...' : 'Update Staff Member'}}
+      </button>
+      <button
+        (click)="closeEditModal()"
+        [disabled]="isLoading"
+        class="btn-secondary">
+        Cancel
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Add Department Modal -->
+<div *ngIf="showDepartmentModal" class="modal-overlay" (click)="closeDepartmentModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <h2 class="modal-title">Add New Department</h2>
+
+    <div *ngIf="errorMessage" class="error-message">
+      {{errorMessage}}
+    </div>
+
+    <div class="form-container">
+      <div class="form-group-full">
+        <label class="form-label">Department Name <span class="required">*</span></label>
+        <input
+          type="text"
+          [(ngModel)]="newDepartment.dpmtName"
+          class="form-input"
+          placeholder="Engineering"
+          required>
+      </div>
+    </div>
+
+    <div class="modal-actions">
+      <button
+        (click)="saveDepartment()"
+        [disabled]="isLoading"
+        class="btn-primary">
+        {{isLoading ? 'Creating...' : 'Add Department'}}
+      </button>
+      <button
+        (click)="closeDepartmentModal()"
+        [disabled]="isLoading"
+        class="btn-secondary">
+        Cancel
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Department Modal -->
+<div *ngIf="showEditDepartmentModal" class="modal-overlay" (click)="closeEditDepartmentModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <h2 class="modal-title">Edit Department</h2>
+
+    <div *ngIf="errorMessage" class="error-message">
+      {{errorMessage}}
+    </div>
+
+    <div class="form-container">
+      <div class="form-group-full">
+        <label class="form-label">Department Name <span class="required">*</span></label>
+        <input
+          type="text"
+          [(ngModel)]="editDepartment.dpmtName"
+          class="form-input"
+          placeholder="Engineering"
+          required>
+      </div>
+    </div>
+
+    <div class="modal-actions">
+      <button
+        (click)="updateDepartment()"
+        [disabled]="isLoading"
+        class="btn-primary">
+        {{isLoading ? 'Updating...' : 'Update Department'}}
+      </button>
+      <button
+        (click)="closeEditDepartmentModal()"
+        [disabled]="isLoading"
         class="btn-secondary">
         Cancel
       </button>
@@ -178,7 +411,7 @@
       <h3 class="fingerprint-title">
         {{isScanning ? 'Scanning Fingerprint...' : 'Register Fingerprint'}}
       </h3>
-      <p class="fingerprint-staff-name">{{selectedStaff?.name}}</p>
+      <p class="fingerprint-staff-name">{{selectedStaff ? getFullName(selectedStaff) : ''}}</p>
       <p class="fingerprint-description">
         {{isScanning ? 'Please keep your finger on the scanner' : 'Click the button below to start fingerprint registration'}}
       </p>

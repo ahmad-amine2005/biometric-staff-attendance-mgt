@@ -1,15 +1,24 @@
 import { Injectable, inject } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { Attendance, AttendanceStats, RecentCheckIn, AttendanceResponseDTO, AttendanceRequestDTO } from '../models/attendance';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AttendanceService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:8080/api/attendance';
+  private apiUrl = `${environment.apiUrl}/attendance`;
+
+  private getAuthHeaders(): HttpHeaders {
+    const token = localStorage.getItem('token');
+    return new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': token ? `Bearer ${token}` : ''
+    });
+  }
 
   private attendanceSubject = new BehaviorSubject<Attendance[]>([]);
   public attendance$ = this.attendanceSubject.asObservable();
@@ -206,26 +215,65 @@ export class AttendanceService {
   }
 
   getStats(): Observable<AttendanceStats> {
-    const stats: AttendanceStats = {
-      totalStaff: 8,
-      presentToday: 7,
-      absent: 0,
-      lateArrivals: 0,
-      onLeave: 1,
-      attendanceRate: 68.8,
-      lateArrivalRate: 15.9
-    };
-    return of(stats);
+    const today = new Date().toISOString().split('T')[0];
+    return this.getAttendancesByDate(today).pipe(
+      map(attendances => {
+        // Count present (has arrival time)
+        const presentToday = attendances.filter(a => a.checkIn).length;
+        
+        // Count late arrivals (after 9:00 AM)
+        const lateArrivals = attendances.filter(a => {
+          if (!a.checkIn) return false;
+          const [hours, minutes] = a.checkIn.split(':').map(Number);
+          return hours > 9 || (hours === 9 && minutes > 0);
+        }).length;
+
+        // For now, we'll need to get total staff from another service
+        // This will be handled in the component
+        return {
+          totalStaff: 0, // Will be set by component
+          presentToday,
+          absent: 0, // Will be calculated in component
+          lateArrivals,
+          onLeave: 0, // Can be enhanced later
+          attendanceRate: 0, // Will be calculated in component
+          lateArrivalRate: presentToday > 0 ? (lateArrivals / presentToday) * 100 : 0
+        };
+      }),
+      catchError(this.handleError)
+    );
   }
 
   getRecentCheckIns(): Observable<RecentCheckIn[]> {
-    const recent: RecentCheckIn[] = [
-      { name: 'Sarah Johnson', time: '09:00', status: 'On time' },
-      { name: 'Lisa Anderson', time: '09:00', status: 'On time' },
-      { name: 'David Martinez', time: '09:00', status: 'On time' },
-      { name: 'Emily Rodriguez', time: '08:00', status: 'On time' },
-      { name: 'James Wilson', time: '08:00', status: 'On time' }
-    ];
-    return of(recent);
+    const today = new Date().toISOString().split('T')[0];
+    return this.getAttendancesByDate(today).pipe(
+      map(attendances => {
+        // Filter attendances with check-in times and sort by time (most recent first)
+        const checkIns = attendances
+          .filter(a => a.checkIn)
+          .map(a => {
+            const [hours, minutes] = a.checkIn!.split(':').map(Number);
+            const checkInTime = new Date();
+            checkInTime.setHours(hours, minutes, 0, 0);
+            return {
+              attendance: a,
+              time: checkInTime
+            };
+          })
+          .sort((a, b) => b.time.getTime() - a.time.getTime()) // Most recent first
+          .slice(0, 5) // Get top 5
+          .map(item => {
+            const [hours, minutes] = item.attendance.checkIn!.split(':').map(Number);
+            const isLate = hours > 9 || (hours === 9 && minutes > 0);
+            return {
+              name: item.attendance.staffName,
+              time: item.attendance.checkIn!,
+              status: isLate ? 'Late' : 'On time'
+            };
+          });
+        return checkIns;
+      }),
+      catchError(this.handleError)
+    );
   }
 }

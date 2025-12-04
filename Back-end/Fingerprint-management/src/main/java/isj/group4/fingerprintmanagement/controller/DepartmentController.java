@@ -20,7 +20,7 @@ import java.util.Map;
  * Provides complete CRUD endpoints for departments.
  */
 @RestController
-@RequestMapping("/api/department")
+@RequestMapping("/api/departments")
 @RequiredArgsConstructor
 @Log4j2
 @CrossOrigin(origins = "*") // Configure appropriately for production

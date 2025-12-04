@@ -14,7 +14,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
-import java.util.List;
 
 @Component
 public class JwtFilter extends OncePerRequestFilter {
@@ -25,9 +24,6 @@ public class JwtFilter extends OncePerRequestFilter {
     @Autowired
     private UserDetailsService userDetailsService;
 
-    // Public endpoints that don’t require JWT
-//    private static final List<String> PUBLIC_URLS = List.of("/auth/**");
-
     @Override
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
@@ -35,12 +31,11 @@ public class JwtFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
 
         String path = request.getRequestURI();
-        System.out.println("=== JWT Filter Debug ===");
-        System.out.println("Request URI: " + path);
+        String method = request.getMethod();
 
-        // Skip JWT validation for public URLs
-        if (path.startsWith("/auth/")) {
-            System.out.println("Public URL detected, skipping JWT validation");
+        // Skip JWT validation for public URLs (login, signup, register endpoints)
+        if (path.startsWith("/auth/") || path.startsWith("/api/auth/")) {
+            System.out.println("JWT Filter: Allowing public endpoint - " + method + " " + path);
             filterChain.doFilter(request, response);
             return;
         }
@@ -52,12 +47,9 @@ public class JwtFilter extends OncePerRequestFilter {
             String jwtToken = authorizationHeader.substring(7);
             try {
                 username = jwtUtil.extractUsername(jwtToken);
-                System.out.println("Username extracted from JWT token: " + username);
             } catch (Exception e) {
-                System.out.println("Error extracting username from JWT: " + e.getMessage());
+                // Invalid token, continue without authentication
             }
-        } else {
-            System.out.println("No valid Bearer token found");
         }
 
         // Authenticate user if username is valid and not already authenticated
@@ -70,11 +62,9 @@ public class JwtFilter extends OncePerRequestFilter {
                             new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
 
                     SecurityContextHolder.getContext().setAuthentication(authToken);
-
-                    System.out.println("Successfully authenticated user: " + username);
                 }
             } catch (Exception e) {
-                System.out.println("Error loading user details for: " + username + " - " + e.getMessage());
+                // Invalid token or user not found, continue without authentication
             }
         }
 

@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/auth/")
+@RequestMapping({"/auth"})
 @RequiredArgsConstructor
 @Slf4j
 @CrossOrigin(origins = "*")
@@ -30,7 +30,7 @@ public class AuthController {
           * @param admin the admin to register
           * @return the registered admin
           */
-    @PostMapping("/admin//register")
+    @PostMapping("/admin/register")
     public ResponseEntity<?> register(@Valid @RequestBody Admin admin) {
         try {
             Admin registered = adminService.registerAdmin(admin);

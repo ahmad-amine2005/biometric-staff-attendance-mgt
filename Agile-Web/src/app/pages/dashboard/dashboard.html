@@ -1,19 +1,34 @@
 <div class="page-container">
   <!-- Page Header -->
   <div class="page-header">
-    <h1>Dashboard</h1>
-    <p>Welcome back! Here's today's attendance overview</p>
+    <div>
+      <h1>Dashboard</h1>
+      <p>Welcome back! Here's today's attendance overview</p>
+    </div>
+    <button (click)="refreshData()" class="btn-refresh" [disabled]="isLoading">
+      {{isLoading ? 'Loading...' : '🔄 Refresh'}}
+    </button>
+  </div>
+
+  <!-- Error Message -->
+  <div *ngIf="errorMessage" class="error-message">
+    {{errorMessage}}
+  </div>
+
+  <!-- Loading Indicator -->
+  <div *ngIf="isLoading && !stats" class="loading-indicator">
+    Loading dashboard data...
   </div>
 
   <!-- Stats Cards -->
-  <div class="stats-grid">
+  <div class="stats-grid" *ngIf="stats">
     <!-- Total Staff -->
     <div class="stat-card">
       <div class="stat-card-icon blue">
         👥
       </div>
       <div class="stat-card-label">Total Staff</div>
-      <div class="stat-card-value">8</div>
+      <div class="stat-card-value">{{stats.totalStaff}}</div>
     </div>
 
     <!-- Present Today -->
@@ -22,7 +37,7 @@
         ✓
       </div>
       <div class="stat-card-label">Present Today</div>
-      <div class="stat-card-value">7</div>
+      <div class="stat-card-value">{{stats.presentToday}}</div>
     </div>
 
     <!-- Absent -->
@@ -31,7 +46,7 @@
         ✗
       </div>
       <div class="stat-card-label">Absent</div>
-      <div class="stat-card-value">0</div>
+      <div class="stat-card-value">{{stats.absent}}</div>
     </div>
 
     <!-- Late Arrivals -->
@@ -40,16 +55,16 @@
         ⏰
       </div>
       <div class="stat-card-label">Late Arrivals</div>
-      <div class="stat-card-value">0</div>
+      <div class="stat-card-value">{{stats.lateArrivals}}</div>
     </div>
 
-    <!-- On Leave -->
+    <!-- Attendance Rate -->
     <div class="stat-card">
       <div class="stat-card-icon blue">
-        📅
+        📊
       </div>
-      <div class="stat-card-label">On Leave</div>
-      <div class="stat-card-value">1</div>
+      <div class="stat-card-label">Attendance Rate</div>
+      <div class="stat-card-value">{{stats.attendanceRate}}%</div>
     </div>
   </div>
 
@@ -60,61 +75,23 @@
       <div class="card-header">
         <h2 class="card-title">Recent Check-Ins</h2>
       </div>
-      <div class="checkin-list">
-        <div class="checkin-item">
+      <div class="checkin-list" *ngIf="recentCheckIns.length > 0">
+        <div class="checkin-item" *ngFor="let checkIn of recentCheckIns">
           <div class="checkin-info">
-            <h4>Sarah Johnson</h4>
-            <p>On time</p>
+            <h4>{{checkIn.name}}</h4>
+            <p [class.late]="checkIn.status === 'Late'">{{checkIn.status}}</p>
           </div>
           <div class="checkin-time">
-            <p>09:00</p>
+            <p>{{checkIn.time}}</p>
             <p>Check-in time</p>
           </div>
         </div>
-
-        <div class="checkin-item">
-          <div class="checkin-info">
-            <h4>Lisa Anderson</h4>
-            <p>On time</p>
-          </div>
-          <div class="checkin-time">
-            <p>09:00</p>
-            <p>Check-in time</p>
-          </div>
-        </div>
-
-        <div class="checkin-item">
-          <div class="checkin-info">
-            <h4>David Martinez</h4>
-            <p>On time</p>
-          </div>
-          <div class="checkin-time">
-            <p>09:00</p>
-            <p>Check-in time</p>
-          </div>
-        </div>
-
-        <div class="checkin-item">
-          <div class="checkin-info">
-            <h4>Emily Rodriguez</h4>
-            <p>On time</p>
-          </div>
-          <div class="checkin-time">
-            <p>08:00</p>
-            <p>Check-in time</p>
-          </div>
-        </div>
-
-        <div class="checkin-item">
-          <div class="checkin-info">
-            <h4>James Wilson</h4>
-            <p>On time</p>
-          </div>
-          <div class="checkin-time">
-            <p>08:00</p>
-            <p>Check-in time</p>
-          </div>
-        </div>
+      </div>
+      <div *ngIf="recentCheckIns.length === 0 && !isLoading" class="empty-state">
+        <p>No check-ins today yet</p>
+      </div>
+      <div *ngIf="isLoading" class="loading-state">
+        <p>Loading check-ins...</p>
       </div>
     </div>
 
@@ -123,56 +100,22 @@
       <div class="card-header">
         <h2 class="card-title">Department Overview</h2>
       </div>
-      <div class="department-list">
-        <div class="department-item">
+      <div class="department-list" *ngIf="departments.length > 0">
+        <div class="department-item" *ngFor="let dept of departments">
           <div class="department-item-header">
-            <span>Engineering</span>
-            <span>2/3</span>
+            <span>{{dept.dpmtName}}</span>
+            <span>{{dept.activeStaff || 0}}/{{dept.totalStaff || 0}}</span>
           </div>
           <div class="progress-bar">
-            <div class="progress-bar-fill" style="width: 67%"></div>
+            <div class="progress-bar-fill" [style.width.%]="getAttendancePercentage(dept)"></div>
           </div>
         </div>
-
-        <div class="department-item">
-          <div class="department-item-header">
-            <span>Sales</span>
-            <span>2/2</span>
-          </div>
-          <div class="progress-bar">
-            <div class="progress-bar-fill" style="width: 100%"></div>
-          </div>
-        </div>
-
-        <div class="department-item">
-          <div class="department-item-header">
-            <span>Marketing</span>
-            <span>1/1</span>
-          </div>
-          <div class="progress-bar">
-            <div class="progress-bar-fill" style="width: 100%"></div>
-          </div>
-        </div>
-
-        <div class="department-item">
-          <div class="department-item-header">
-            <span>Human Resources</span>
-            <span>1/1</span>
-          </div>
-          <div class="progress-bar">
-            <div class="progress-bar-fill" style="width: 100%"></div>
-          </div>
-        </div>
-
-        <div class="department-item">
-          <div class="department-item-header">
-            <span>Operations</span>
-            <span>1/1</span>
-          </div>
-          <div class="progress-bar">
-            <div class="progress-bar-fill" style="width: 100%"></div>
-          </div>
-        </div>
+      </div>
+      <div *ngIf="departments.length === 0 && !isLoading" class="empty-state">
+        <p>No departments found</p>
+      </div>
+      <div *ngIf="isLoading" class="loading-state">
+        <p>Loading departments...</p>
       </div>
     </div>
   </div>

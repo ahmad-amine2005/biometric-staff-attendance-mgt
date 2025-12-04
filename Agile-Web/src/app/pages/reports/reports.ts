@@ -42,11 +42,11 @@ export class Reports implements OnInit {
   }
 
   loadStaffReports() {
-    this.staffService.getAllStaff().subscribe(staff => {
+    this.staffService.getAllStaff().subscribe((staff: Staff[]) => {
       this.staffReports = staff.map(s => ({
-        name: s.name,
-        department: s.department,
-        daysPresent: Math.floor(Math.random() * 8) + 13, // Mock data
+        name: s.name ? `${s.name} ${s.surname || ''}`.trim() : 'Unknown',
+        department: s.departmentName || 'N/A',
+        daysPresent: s.totalAttendances || 0, // Use actual attendance data if available
         totalDays: 22,
         percentage: 0
       }));

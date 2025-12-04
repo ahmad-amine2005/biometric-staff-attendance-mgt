@@ -1,16 +1,26 @@
 export interface Staff {
-  id: string;
-  employeeId: string;
+  userId: number;
   name: string;
+  surname: string;
   email: string;
-  phone: string;
-  department: string;
-  position: string;
-  shift: string;
-  fingerprintRegistered: boolean;
-  fingerprintTemplate?: string;
-  avatar?: string;
-  createdAt: Date;
+  role?: string;
+  active?: boolean;
+  noAbsence?: number;
+  departmentId: number;
+  departmentName: string;
+  contractId?: number;
+  contractStatus?: string;
+  totalAttendances?: number;
+}
+
+export interface StaffRequest {
+  name: string;
+  surname: string;
+  email: string;
+  departmentId: number;
+  noDaysPerWeek_contract: number;
+  startTime_contract: string;
+  endTime_contract: string;
 }
 
 export interface Department {

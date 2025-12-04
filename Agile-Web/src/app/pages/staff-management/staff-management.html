@@ -25,50 +25,61 @@
     </div>
   </div>
 
+  <!-- Error Message -->
+  <div *ngIf="errorMessage && !showAddModal" class="error-message">
+    {{errorMessage}}
+  </div>
+
+  <!-- Loading Indicator -->
+  <div *ngIf="isLoading" class="loading-indicator">
+    Loading...
+  </div>
+
   <!-- Staff Table -->
   <div class="table-container">
     <table class="staff-table">
       <thead>
         <tr>
-          <th>Employee ID</th>
+          <th>ID</th>
           <th>Name</th>
           <th>Department</th>
           <th>Email</th>
-          <th>Shift</th>
+          <th>Role</th>
           <th>Status</th>
+          <th>Absences</th>
           <th class="text-right">Actions</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let member of filteredStaff" class="table-row">
-          <td class="employee-id">{{member.employeeId}}</td>
+          <td class="employee-id">{{member.userId}}</td>
           <td>
             <div class="name-cell">
               <div class="avatar">
-                {{getInitials(member.name)}}
+                {{getInitials(member.name, member.surname)}}
               </div>
-              <span class="staff-name">{{member.name}}</span>
+              <span class="staff-name">{{getFullName(member)}}</span>
             </div>
           </td>
-          <td class="text-muted">{{member.department}}</td>
-          <td class="text-muted">{{member.position}}</td>
-          <td class="text-muted">{{member.shift}}</td>
+          <td class="text-muted">{{member.departmentName || 'N/A'}}</td>
+          <td class="text-muted">{{member.email}}</td>
+          <td class="text-muted">{{member.role || 'N/A'}}</td>
           <td>
-            <span *ngIf="member.fingerprintRegistered" class="badge badge-registered">
-              Registered
+            <span *ngIf="member.active" class="badge badge-registered">
+              Active
             </span>
-            <button
-              *ngIf="!member.fingerprintRegistered"
-              (click)="openFingerprintModal(member)"
-              class="badge badge-register">
-              <span class="fingerprint-icon">👆</span>
-              Register
-            </button>
+            <span *ngIf="!member.active" class="badge badge-inactive">
+              Inactive
+            </span>
           </td>
+          <td class="text-muted">{{member.noAbsence || 0}}</td>
           <td class="actions-cell">
             <button class="btn-icon-action edit-btn" title="Edit">✏️</button>
-            <button (click)="deleteStaff(member.id)" class="btn-icon-action delete-btn" title="Delete">🗑️</button>
+            <button (click)="deleteStaff(member.userId)" class="btn-icon-action delete-btn" title="Delete">🗑️</button>
           </td>
+        </tr>
+        <tr *ngIf="filteredStaff.length === 0 && !isLoading">
+          <td colspan="8" class="text-center text-muted">No staff members found</td>
         </tr>
       </tbody>
     </table>
@@ -80,87 +91,100 @@
   <div class="modal-content" (click)="$event.stopPropagation()">
     <h2 class="modal-title">Add New Staff Member</h2>
 
+    <div *ngIf="errorMessage" class="error-message">
+      {{errorMessage}}
+    </div>
+
     <div class="form-container">
       <div class="form-row">
         <div class="form-group">
-          <label class="form-label">Employee ID</label>
-          <input
-            type="text"
-            [(ngModel)]="newStaff.employeeId"
-            class="form-input"
-            placeholder="EMP001">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Full Name</label>
+          <label class="form-label">Name <span class="required">*</span></label>
           <input
             type="text"
             [(ngModel)]="newStaff.name"
             class="form-input"
-            placeholder="John Doe">
+            placeholder="John"
+            required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Surname <span class="required">*</span></label>
+          <input
+            type="text"
+            [(ngModel)]="newStaff.surname"
+            class="form-input"
+            placeholder="Doe"
+            required>
         </div>
       </div>
 
       <div class="form-row">
         <div class="form-group">
-          <label class="form-label">Email</label>
+          <label class="form-label">Email <span class="required">*</span></label>
           <input
             type="email"
             [(ngModel)]="newStaff.email"
             class="form-input"
-            placeholder="john@company.com">
+            placeholder="john@company.com"
+            required>
         </div>
         <div class="form-group">
-          <label class="form-label">Phone</label>
-          <input
-            type="text"
-            [(ngModel)]="newStaff.phone"
+          <label class="form-label">Department <span class="required">*</span></label>
+          <select
+            [(ngModel)]="newStaff.departmentId"
             class="form-input"
-            placeholder="+1234567890">
+            required>
+            <option [value]="0">Select Department</option>
+            <option *ngFor="let dept of departments" [value]="dept.dpmtId">
+              {{dept.dpmtName}}
+            </option>
+          </select>
         </div>
       </div>
 
       <div class="form-row">
         <div class="form-group">
-          <label class="form-label">Department</label>
-          <select
-            [(ngModel)]="newStaff.department"
-            class="form-input">
-            <option value="">Select Department</option>
-            <option value="Engineering">Engineering</option>
-            <option value="Sales">Sales</option>
-            <option value="Marketing">Marketing</option>
-            <option value="Human Resources">Human Resources</option>
-            <option value="Operations">Operations</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Position</label>
+          <label class="form-label">Days Per Week (Contract) <span class="required">*</span></label>
           <input
-            type="text"
-            [(ngModel)]="newStaff.position"
+            type="number"
+            [(ngModel)]="newStaff.noDaysPerWeek_contract"
             class="form-input"
-            placeholder="Software Developer">
+            min="1"
+            max="7"
+            placeholder="5"
+            required>
         </div>
       </div>
 
-      <div class="form-group-full">
-        <label class="form-label">Shift Timing</label>
-        <input
-          type="text"
-          [(ngModel)]="newStaff.shift"
-          class="form-input"
-          placeholder="09:00 - 17:00">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Contract Start Time <span class="required">*</span></label>
+          <input
+            type="datetime-local"
+            [(ngModel)]="newStaff.startTime_contract"
+            class="form-input"
+            required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Contract End Time <span class="required">*</span></label>
+          <input
+            type="datetime-local"
+            [(ngModel)]="newStaff.endTime_contract"
+            class="form-input"
+            required>
+        </div>
       </div>
     </div>
 
     <div class="modal-actions">
       <button
         (click)="saveStaff()"
+        [disabled]="isLoading"
         class="btn-primary">
-        Add Staff Member
+        {{isLoading ? 'Creating...' : 'Add Staff Member'}}
       </button>
       <button
         (click)="closeAddModal()"
+        [disabled]="isLoading"
         class="btn-secondary">
         Cancel
       </button>
@@ -178,7 +202,7 @@
       <h3 class="fingerprint-title">
         {{isScanning ? 'Scanning Fingerprint...' : 'Register Fingerprint'}}
       </h3>
-      <p class="fingerprint-staff-name">{{selectedStaff?.name}}</p>
+      <p class="fingerprint-staff-name">{{selectedStaff ? getFullName(selectedStaff) : ''}}</p>
       <p class="fingerprint-description">
         {{isScanning ? 'Please keep your finger on the scanner' : 'Click the button below to start fingerprint registration'}}
       </p>

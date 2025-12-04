@@ -12,11 +12,11 @@ export interface Department {
 }
 
 export interface DepartmentResponse {
-  id: number;
-  name: string;
-  description?: string;
-  createdAt: string;
-  updatedAt: string;
+  dpmtId: number;
+  dpmtName: string;
+  totalStaff?: number;
+  activeStaff?: number;
+  totalReports?: number;
 }
 
 @Injectable({

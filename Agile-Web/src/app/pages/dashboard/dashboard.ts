@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StaffService } from '../../services/staff';
 import { AttendanceService } from '../../services/attendance';
-import { Department } from '../../models/staff';
+import { DepartmentService, DepartmentResponse } from '../../services/department.service';
 import { AttendanceStats, RecentCheckIn } from '../../models/attendance';
 
 @Component({
@@ -15,12 +15,13 @@ import { AttendanceStats, RecentCheckIn } from '../../models/attendance';
 export class Dashboard implements OnInit{
 
   stats: AttendanceStats | null = null;
-  departments: Department[] = [];
+  departments: DepartmentResponse[] = [];
   recentCheckIns: RecentCheckIn[] = [];
 
   constructor(
     private staffService: StaffService,
-    private attendanceService: AttendanceService
+    private attendanceService: AttendanceService,
+    private departmentService: DepartmentService
   ) {}
 
   ngOnInit() {
@@ -36,7 +37,7 @@ export class Dashboard implements OnInit{
   }
 
   loadDepartments() {
-    this.staffService.getDepartments().subscribe(depts => {
+    this.departmentService.getAllDepartments().subscribe((depts: DepartmentResponse[]) => {
       this.departments = depts;
     });
   }
@@ -47,8 +48,10 @@ export class Dashboard implements OnInit{
     });
   }
 
-  getAttendancePercentage(dept: Department): number {
-    return dept.totalStaff > 0 ? (dept.presentToday / dept.totalStaff) * 100 : 0;
+  getAttendancePercentage(dept: DepartmentResponse): number {
+    const totalStaff = dept.totalStaff || 0;
+    const activeStaff = dept.activeStaff || 0;
+    return totalStaff > 0 ? (activeStaff / totalStaff) * 100 : 0;
   }
 
 }

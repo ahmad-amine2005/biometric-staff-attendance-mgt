@@ -9,6 +9,7 @@ import {AuthResponse, LoginRequest, RegisterRequest} from './auth.model';
 })
 export class AdminService {
   private apiEntry = environment.apiEntry;
+  private apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 

@@ -20,7 +20,7 @@ import java.util.Map;
  * Provides endpoints for authentication and admin management.
  */
 @RestController
-@RequestMapping("/admin")
+@RequestMapping("/api/admin")
 @RequiredArgsConstructor
 @Log4j2
 @CrossOrigin(origins = "*") // Configure appropriately for production

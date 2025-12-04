@@ -5,52 +5,83 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ac8ee66-3e27-4bde-8182-e73b79ef6a75" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Agile-Web/src/app/services/department.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/.tsbuildinfo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/pages/staff-management/staff-management.html" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/src/app/pages/staff-management/staff-management.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/STAFF_API_DOCUMENTATION.md" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/STAFF_API_DOCUMENTATION.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/@angular_common.js" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/@angular_common.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/@angular_common.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/@angular_common.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/@angular_core.js" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/@angular_core.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/@angular_core.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/@angular_core.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/@angular_forms.js" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/@angular_forms.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/@angular_forms.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/@angular_forms.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/@angular_platform-browser.js" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/@angular_platform-browser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/@angular_platform-browser.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/@angular_platform-browser.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/@angular_router.js" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/@angular_router.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/@angular_router.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/@angular_router.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/_metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/_metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/chunk-WDMUDEB6.js" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/chunk-WDMUDEB6.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/chunk-WDMUDEB6.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/chunk-WDMUDEB6.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/rxjs.js" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/rxjs.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/rxjs.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/rxjs.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/zone__js.js" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/zone__js.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/zone__js.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps/zone__js.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps_ssr/_metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps_ssr/_metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps_ssr/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/vite/deps_ssr/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/admin-service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/src/app/admin-service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Agile-Web/src/environments/environment.development.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/src/environments/environment.development.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Agile-Web/src/environments/environment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/src/environments/environment.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/Fingerprint-management.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/src/main/java/isj/group4/fingerprintmanagement/config/JwtFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/src/main/java/isj/group4/fingerprintmanagement/config/JwtFilter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/src/main/java/isj/group4/fingerprintmanagement/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/src/main/java/isj/group4/fingerprintmanagement/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/src/main/java/isj/group4/fingerprintmanagement/dto/StaffRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/src/main/java/isj/group4/fingerprintmanagement/dto/StaffRequestDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/src/main/java/isj/group4/fingerprintmanagement/dto/StaffResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/src/main/java/isj/group4/fingerprintmanagement/dto/StaffResponseDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/src/main/java/isj/group4/fingerprintmanagement/entity/Contract.java" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/src/main/java/isj/group4/fingerprintmanagement/entity/Contract.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/src/main/java/isj/group4/fingerprintmanagement/services/StaffService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/src/main/java/isj/group4/fingerprintmanagement/services/StaffService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/src/main/java/isj/group4/fingerprintmanagement/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/src/main/java/isj/group4/fingerprintmanagement/controller/AdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/src/main/java/isj/group4/fingerprintmanagement/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/src/main/java/isj/group4/fingerprintmanagement/controller/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/src/main/java/isj/group4/fingerprintmanagement/controller/DepartmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/src/main/java/isj/group4/fingerprintmanagement/controller/DepartmentController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/config/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/config/SecurityConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/controller/AdminController.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/controller/AdminController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/controller/DepartmentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/controller/DepartmentController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/controller/StaffController.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/controller/StaffController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/dto/AdminLoginRequestDTO$AdminLoginRequestDTOBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/dto/AdminLoginRequestDTO$AdminLoginRequestDTOBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/dto/AdminLoginRequestDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/dto/AdminLoginRequestDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/dto/AdminLoginResponseDTO$AdminLoginResponseDTOBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/dto/AdminLoginResponseDTO$AdminLoginResponseDTOBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/dto/AdminLoginResponseDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/dto/AdminLoginResponseDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/dto/DepartmentDetailDTO$DepartmentDetailDTOBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/dto/DepartmentDetailDTO$DepartmentDetailDTOBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/dto/DepartmentDetailDTO$StaffSummaryDTO$StaffSummaryDTOBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/dto/DepartmentDetailDTO$StaffSummaryDTO$StaffSummaryDTOBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/dto/DepartmentDetailDTO$StaffSummaryDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/dto/DepartmentDetailDTO$StaffSummaryDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/dto/DepartmentDetailDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/dto/DepartmentDetailDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/dto/DepartmentRequestDTO$DepartmentRequestDTOBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/dto/DepartmentRequestDTO$DepartmentRequestDTOBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/dto/DepartmentRequestDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/dto/DepartmentRequestDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/dto/DepartmentResponseDTO$DepartmentResponseDTOBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/dto/DepartmentResponseDTO$DepartmentResponseDTOBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/dto/DepartmentResponseDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/dto/DepartmentResponseDTO.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/dto/StaffRequestDTO$StaffRequestDTOBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/dto/StaffRequestDTO$StaffRequestDTOBuilder.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/dto/StaffRequestDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/dto/StaffRequestDTO.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/dto/StaffResponseDTO$StaffResponseDTOBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/dto/StaffResponseDTO$StaffResponseDTOBuilder.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/dto/StaffResponseDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/dto/StaffResponseDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/dto/StaffUpdateDTO$StaffUpdateDTOBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/dto/StaffUpdateDTO$StaffUpdateDTOBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/dto/StaffUpdateDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/dto/StaffUpdateDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/entity/Admin.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/entity/Admin.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/entity/Attendance$AttendanceBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/entity/Attendance$AttendanceBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/entity/Attendance.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/entity/Attendance.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/entity/Contract$ContractBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/entity/Contract$ContractBuilder.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/entity/Contract.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/entity/Contract.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/entity/Department$DepartmentBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/entity/Department$DepartmentBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/entity/Department.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/entity/Department.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/entity/Fingerprint$FingerprintBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/entity/Fingerprint$FingerprintBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/entity/Fingerprint.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/entity/Fingerprint.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/entity/Notification$NotificationBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/entity/Notification$NotificationBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/entity/Notification.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/entity/Notification.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/entity/Report$ReportBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/entity/Report$ReportBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/entity/Report.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/entity/Report.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/entity/Staff.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/entity/Staff.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/entity/User$UserBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/entity/User$UserBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/entity/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/entity/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/services/AdminService.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/services/AdminService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/services/AttendanceService.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/services/AttendanceService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/services/DepartmentService.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/services/DepartmentService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/services/StaffService.class" beforeDir="false" afterPath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/classes/isj/group4/fingerprintmanagement/services/StaffService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front-end/.angular/cache/20.3.11/attendflow/.tsbuildinfo" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front-end/.angular/cache/20.3.11/attendflow/vite/deps/@angular_common.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front-end/.angular/cache/20.3.11/attendflow/vite/deps/@angular_common.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front-end/.angular/cache/20.3.11/attendflow/vite/deps/@angular_core.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front-end/.angular/cache/20.3.11/attendflow/vite/deps/@angular_core.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front-end/.angular/cache/20.3.11/attendflow/vite/deps/@angular_forms.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front-end/.angular/cache/20.3.11/attendflow/vite/deps/@angular_forms.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front-end/.angular/cache/20.3.11/attendflow/vite/deps/@angular_platform-browser.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front-end/.angular/cache/20.3.11/attendflow/vite/deps/@angular_platform-browser.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front-end/.angular/cache/20.3.11/attendflow/vite/deps/@angular_router.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front-end/.angular/cache/20.3.11/attendflow/vite/deps/@angular_router.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front-end/.angular/cache/20.3.11/attendflow/vite/deps/_metadata.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front-end/.angular/cache/20.3.11/attendflow/vite/deps/chunk-2OC7KYYQ.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front-end/.angular/cache/20.3.11/attendflow/vite/deps/chunk-2OC7KYYQ.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front-end/.angular/cache/20.3.11/attendflow/vite/deps/chunk-PEEHZ6DU.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front-end/.angular/cache/20.3.11/attendflow/vite/deps/chunk-PEEHZ6DU.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front-end/.angular/cache/20.3.11/attendflow/vite/deps/chunk-RSS3ODKE.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front-end/.angular/cache/20.3.11/attendflow/vite/deps/chunk-RSS3ODKE.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front-end/.angular/cache/20.3.11/attendflow/vite/deps/chunk-WDMUDEB6.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front-end/.angular/cache/20.3.11/attendflow/vite/deps/chunk-WDMUDEB6.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front-end/.angular/cache/20.3.11/attendflow/vite/deps/chunk-YZGQWRQO.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front-end/.angular/cache/20.3.11/attendflow/vite/deps/chunk-YZGQWRQO.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front-end/.angular/cache/20.3.11/attendflow/vite/deps/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front-end/.angular/cache/20.3.11/attendflow/vite/deps/rxjs.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front-end/.angular/cache/20.3.11/attendflow/vite/deps/rxjs.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front-end/.angular/cache/20.3.11/attendflow/vite/deps/zone__js.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front-end/.angular/cache/20.3.11/attendflow/vite/deps/zone__js.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front-end/.angular/cache/20.3.11/attendflow/vite/deps_ssr/_metadata.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front-end/.angular/cache/20.3.11/attendflow/vite/deps_ssr/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back-end/Fingerprint-management/target/test-classes/isj/group4/fingerprintmanagement/FingerprintManagementApplicationTests.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,6 +90,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -105,6 +137,9 @@
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
 }</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
 }</component>
@@ -139,10 +174,10 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;npm.ng.executor&quot;: &quot;Run&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.JAVA&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;,
     &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
     &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\A APH\\Documents\\ING4-Cours\\Agile method\\biometric-staff-attendance-mgt\\Agile_Mobile\\node_modules\\typescript\\lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
@@ -154,6 +189,32 @@
         <entry key="com.intellij.reactbuddy.reactComponents" value="false" />
         <entry key="com.intellij.reactbuddy.reactInspector" value="false" />
         <entry key="com.intellij.reactbuddy.storybook" value="false" />
+      </map>
+    </option>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="SpringBootApplicationConfigurationType" />
+        <option value="js.build_tools.npm" />
+      </set>
+    </option>
+    <option name="configurationStatuses">
+      <map>
+        <entry key="SpringBootApplicationConfigurationType">
+          <value>
+            <map>
+              <entry key="FingerprintManagementApplication" value="STOPPED" />
+            </map>
+          </value>
+        </entry>
+        <entry key="js.build_tools.npm">
+          <value>
+            <map>
+              <entry key="ng" value="STOPPED" />
+            </map>
+          </value>
+        </entry>
       </map>
     </option>
   </component>
@@ -176,10 +237,10 @@
       </method>
     </configuration>
     <configuration name="ng" type="js.build_tools.npm" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/Front-end/package.json" />
+      <package-json value="$PROJECT_DIR$/Agile-Web/package.json" />
       <command value="run" />
       <scripts>
-        <script value="ng" />
+        <script value="start" />
       </scripts>
       <node-interpreter value="project" />
       <envs />
@@ -223,6 +284,14 @@
       <workItem from="1764294685311" duration="5388000" />
       <workItem from="1764300471483" duration="378000" />
       <workItem from="1764344379101" duration="23730000" />
+      <workItem from="1764764328364" duration="514000" />
+      <workItem from="1764764866040" duration="11000" />
+      <workItem from="1764780870686" duration="1855000" />
+      <workItem from="1764785391415" duration="1180000" />
+      <workItem from="1764786698853" duration="8194000" />
+      <workItem from="1764799391325" duration="2001000" />
+      <workItem from="1764801481374" duration="122000" />
+      <workItem from="1764820944982" duration="2390000" />
     </task>
     <servers />
   </component>

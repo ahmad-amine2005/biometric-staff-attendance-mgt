@@ -1,6 +1,5 @@
 package isj.group4.fingerprintmanagement.dto;
 
-import isj.group4.fingerprintmanagement.entity.Staff;
 import isj.group4.fingerprintmanagement.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,7 +22,14 @@ public class StaffResponseDTO implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
-    private Staff staff;
+    // Staff basic information
+    private Long userId;
+    private String name;
+    private String surname;
+    private String email;
+    private User.Role role;
+    private Boolean active;
+    private Integer noAbsence;
 
     // Department information
     private Long departmentId;

@@ -3,9 +3,11 @@ package isj.group4.fingerprintmanagement.services;
 import isj.group4.fingerprintmanagement.dto.StaffRequestDTO;
 import isj.group4.fingerprintmanagement.dto.StaffResponseDTO;
 import isj.group4.fingerprintmanagement.dto.StaffUpdateDTO;
+import isj.group4.fingerprintmanagement.entity.Contract;
 import isj.group4.fingerprintmanagement.entity.Department;
 import isj.group4.fingerprintmanagement.entity.Staff;
 import isj.group4.fingerprintmanagement.entity.User;
+import isj.group4.fingerprintmanagement.repository.ContractRepo;
 import isj.group4.fingerprintmanagement.repository.DepartmentRepo;
 import isj.group4.fingerprintmanagement.repository.StaffRepo;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -30,6 +33,7 @@ public class StaffService {
     private final StaffRepo staffRepo;
     private final DepartmentRepo departmentRepo;
     private final PasswordEncoder passwordEncoder;
+    private final ContractRepo contractRepo;
 
     /**
      * Create a new staff member.
@@ -66,7 +70,18 @@ public class StaffService {
         staff.setDepartment(department);
 
         Staff savedStaff = staffRepo.save(staff);
+
         log.info("Staff created successfully: {} (ID: {})", savedStaff.getEmail(), savedStaff.getUserId());
+
+        Contract contract = new Contract();
+        contract.setNoDaysPerWeek(staffRequest.getNoDaysPerWeek_contract());
+        contract.setStartTime(staffRequest.getStartTime_contract());
+        contract.setEndTime(staffRequest.getEndTime_contract());
+        contract.setStaff(savedStaff);
+        contract.setContractDate(LocalDate.now());
+        Contract savedContract = contractRepo.save(contract);
+
+        log.info("contract created successfully: {}, for staff: {}", savedContract.getContractDate(), savedContract.getStaff().getName());
 
         return mapToResponseDTO(savedStaff);
     }
@@ -342,12 +357,21 @@ public class StaffService {
      * @return the staff response DTO
      */
     private StaffResponseDTO mapToResponseDTO(Staff staff) {
+        Contract contract = new Contract();
+        contract = contractRepo.findContractByStaff_UserId(staff.getUserId());
+
         return StaffResponseDTO.builder()
-                .staff(staff)
+                .userId(staff.getUserId())
+                .name(staff.getName())
+                .surname(staff.getSurname())
+                .email(staff.getEmail())
+                .role(staff.getRole())
+                .active(staff.getActive())
+                .noAbsence(staff.getNoAbsence())
                 .departmentId(staff.getDepartment() != null ? staff.getDepartment().getDpmtId() : null)
                 .departmentName(staff.getDepartment() != null ? staff.getDepartment().getDpmtName() : null)
-                .contractId(staff.getContract() != null ? staff.getContract().getContractId() : null)
-                .contractStatus(staff.getContract() != null ? "Active" : "No Contract")
+                .contractId(contract != null ? contract.getContractId() : null)
+                .contractStatus(contract != null ? "Active" : "No Contract")
                 .totalAttendances(staff.getAttendances() != null ? staff.getAttendances().size() : 0)
                 .build();
     }

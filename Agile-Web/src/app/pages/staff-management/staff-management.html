@@ -5,7 +5,7 @@
       <h1 class="page-title">Staff Management</h1>
       <p class="page-subtitle">Manage staff members and their fingerprint authentication</p>
     </div>
-    <button 
+    <button
       (click)="openAddModal()"
       class="btn-add-staff">
       <span class="btn-icon">+</span>
@@ -17,8 +17,8 @@
   <div class="search-container">
     <div class="search-wrapper">
       <span class="search-icon">🔍</span>
-      <input 
-        type="text" 
+      <input
+        type="text"
         [(ngModel)]="searchQuery"
         placeholder="Search staff..."
         class="search-input">
@@ -33,9 +33,9 @@
           <th>Employee ID</th>
           <th>Name</th>
           <th>Department</th>
-          <th>Position</th>
+          <th>Email</th>
           <th>Shift</th>
-          <th>Fingerprint</th>
+          <th>Status</th>
           <th class="text-right">Actions</th>
         </tr>
       </thead>
@@ -57,7 +57,7 @@
             <span *ngIf="member.fingerprintRegistered" class="badge badge-registered">
               Registered
             </span>
-            <button 
+            <button
               *ngIf="!member.fingerprintRegistered"
               (click)="openFingerprintModal(member)"
               class="badge badge-register">
@@ -79,21 +79,21 @@
 <div *ngIf="showAddModal" class="modal-overlay" (click)="closeAddModal()">
   <div class="modal-content" (click)="$event.stopPropagation()">
     <h2 class="modal-title">Add New Staff Member</h2>
-    
+
     <div class="form-container">
       <div class="form-row">
         <div class="form-group">
           <label class="form-label">Employee ID</label>
-          <input 
-            type="text" 
+          <input
+            type="text"
             [(ngModel)]="newStaff.employeeId"
             class="form-input"
             placeholder="EMP001">
         </div>
         <div class="form-group">
           <label class="form-label">Full Name</label>
-          <input 
-            type="text" 
+          <input
+            type="text"
             [(ngModel)]="newStaff.name"
             class="form-input"
             placeholder="John Doe">
@@ -103,16 +103,16 @@
       <div class="form-row">
         <div class="form-group">
           <label class="form-label">Email</label>
-          <input 
-            type="email" 
+          <input
+            type="email"
             [(ngModel)]="newStaff.email"
             class="form-input"
             placeholder="john@company.com">
         </div>
         <div class="form-group">
           <label class="form-label">Phone</label>
-          <input 
-            type="text" 
+          <input
+            type="text"
             [(ngModel)]="newStaff.phone"
             class="form-input"
             placeholder="+1234567890">
@@ -122,7 +122,7 @@
       <div class="form-row">
         <div class="form-group">
           <label class="form-label">Department</label>
-          <select 
+          <select
             [(ngModel)]="newStaff.department"
             class="form-input">
             <option value="">Select Department</option>
@@ -135,8 +135,8 @@
         </div>
         <div class="form-group">
           <label class="form-label">Position</label>
-          <input 
-            type="text" 
+          <input
+            type="text"
             [(ngModel)]="newStaff.position"
             class="form-input"
             placeholder="Software Developer">
@@ -145,8 +145,8 @@
 
       <div class="form-group-full">
         <label class="form-label">Shift Timing</label>
-        <input 
-          type="text" 
+        <input
+          type="text"
           [(ngModel)]="newStaff.shift"
           class="form-input"
           placeholder="09:00 - 17:00">
@@ -154,12 +154,12 @@
     </div>
 
     <div class="modal-actions">
-      <button 
+      <button
         (click)="saveStaff()"
         class="btn-primary">
         Add Staff Member
       </button>
-      <button 
+      <button
         (click)="closeAddModal()"
         class="btn-secondary">
         Cancel
@@ -182,14 +182,14 @@
       <p class="fingerprint-description">
         {{isScanning ? 'Please keep your finger on the scanner' : 'Click the button below to start fingerprint registration'}}
       </p>
-      
+
       <div *ngIf="!isScanning" class="fingerprint-actions">
-        <button 
+        <button
           (click)="startFingerprintScan()"
           class="btn-scan">
           Start Scan
         </button>
-        <button 
+        <button
           (click)="closeFingerprintModal()"
           class="btn-cancel">
           Cancel

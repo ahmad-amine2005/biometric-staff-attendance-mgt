@@ -25,13 +25,26 @@ public class AuthController {
     private final AdminService adminService;
 
     /**
-     * Register a new admin account
-     */
-    @PostMapping("admin/register")
-    public ResponseEntity<Admin> registerAdmin(@RequestBody Admin admin) {
-        log.info("Received registration request for admin: {}", admin.getEmail());
-        Admin savedAdmin = adminService.registerAdmin(admin);
-        return ResponseEntity.ok(savedAdmin);
+          * Register new admin endpoint.
+          *
+          * @param admin the admin to register
+          * @return the registered admin
+          */
+    @PostMapping("/admin//register")
+    public ResponseEntity<?> register(@Valid @RequestBody Admin admin) {
+        try {
+            Admin registered = adminService.registerAdmin(admin);
+            Map<String, Object> response = new HashMap<>();
+            response.put("message", "Admin registered successfully");
+            response.put("adminId", registered.getUserId());
+            response.put("email", registered.getEmail());
+            return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        } catch (IllegalArgumentException e) {
+            log.error("Registration failed: {}", e.getMessage());
+            Map<String, String> error = new HashMap<>();
+            error.put("error", e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+        }
     }
 
        /**

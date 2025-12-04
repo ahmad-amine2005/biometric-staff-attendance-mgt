@@ -3,6 +3,7 @@ package isj.group4.fingerprintmanagement.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "contracts")
@@ -16,8 +17,8 @@ public class Contract {
     private Long contractId;
 
     private Integer noDaysPerWeek;
-    private LocalDate startTime;
-    private LocalDate endTime;
+    private LocalDateTime startTime;
+    private LocalDateTime endTime;
     private LocalDate contractDate;
 
     @OneToOne

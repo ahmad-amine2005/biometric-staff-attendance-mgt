@@ -1,5 +1,6 @@
 package isj.group4.fingerprintmanagement.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import isj.group4.fingerprintmanagement.entity.User;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -11,6 +12,7 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * DTO for creating or updating staff members.
@@ -48,4 +50,15 @@ public class StaffRequestDTO implements Serializable {
     /** Account active status (default: true) */
     @Builder.Default
     private Boolean active = true;
+
+    @NotNull(message = "Number of days per week in contract is required")
+    private Integer noDaysPerWeek_contract;
+
+    @NotNull(message = "Contract start time is required")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    private LocalDateTime startTime_contract;
+
+    @NotNull(message = "Contract end time is required")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    private LocalDateTime endTime_contract;
 }

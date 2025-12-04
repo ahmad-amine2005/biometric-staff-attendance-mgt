@@ -13,11 +13,13 @@ Complete CRUD operations for Staff management in the Biometric Staff Attendance 
   "name": "John",
   "surname": "Doe",
   "email": "john.doe@company.com",
-  "password": "securePassword123",
   "departmentId": 1,
   "noAbsence": 0,
-  "role": "ROLE_STAFF",
-  "active": true
+  "role": "STAFF",
+  "active": true,
+  "noDaysPerWeek_contract": 5,
+  "startTime_contract": "2025-11-29T08:00:00",
+  "endTime_contract": "2025-11-29T17:00:00"
 }
 ```
 
@@ -36,19 +38,18 @@ Complete CRUD operations for Staff management in the Biometric Staff Attendance 
 ### StaffResponseDTO (Response)
 ```json
 {
-  "userId": 1,
+  "userId": 6,
   "name": "John",
   "surname": "Doe",
-  "email": "john.doe@company.com",
-  "fullName": "John Doe",
-  "noAbsence": 0,
-  "role": "ROLE_STAFF",
+  "email": "john.doe5@company.com",
+  "role": "STAFF",
   "active": true,
+  "noAbsence": 0,
   "departmentId": 1,
   "departmentName": "Engineering",
-  "contractId": 5,
+  "contractId": 3,
   "contractStatus": "Active",
-  "totalAttendances": 45
+  "totalAttendances": 0
 }
 ```
 
@@ -64,23 +65,29 @@ Complete CRUD operations for Staff management in the Biometric Staff Attendance 
 {
   "name": "John",
   "surname": "Doe",
-  "email": "john.doe@company.com",
-  "password": "password123",
-  "departmentId": 1
+  "email": "john.doe5@company.com",
+  "departmentId": 1,
+  "noDaysPerWeek_contract": 5,
+  "startTime_contract": "2025-11-29T08:00:00",
+  "endTime_contract": "2025-11-29T17:00:00"
 }
 ```
 
 **Response (201 Created):**
 ```json
 {
-  "userId": 1,
+  "userId": 6,
   "name": "John",
   "surname": "Doe",
-  "email": "john.doe@company.com",
-  "fullName": "John Doe",
+  "email": "john.doe5@company.com",
+  "role": "STAFF",
+  "active": true,
+  "noAbsence": 0,
   "departmentId": 1,
   "departmentName": "Engineering",
-  "active": true
+  "contractId": 3,
+  "contractStatus": "Active",
+  "totalAttendances": 0
 }
 ```
 
@@ -93,13 +100,18 @@ Complete CRUD operations for Staff management in the Biometric Staff Attendance 
 ```json
 [
   {
-    "userId": 1,
+    "userId": 2,
     "name": "John",
     "surname": "Doe",
     "email": "john.doe@company.com",
-    "fullName": "John Doe",
+    "role": "STAFF",
+    "active": true,
     "noAbsence": 0,
-    "departmentName": "Engineering"
+    "departmentId": 1,
+    "departmentName": "Engineering",
+    "contractId": null,
+    "contractStatus": "No Contract",
+    "totalAttendances": 1
   }
 ]
 ```

@@ -1,35 +1,208 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of } from 'rxjs';
-import { Attendance, AttendanceStats, RecentCheckIn } from '../models/attendance';
+import { Injectable, inject } from '@angular/core';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
+import { Attendance, AttendanceStats, RecentCheckIn, AttendanceResponseDTO, AttendanceRequestDTO } from '../models/attendance';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AttendanceService {
-   private attendanceSubject = new BehaviorSubject<Attendance[]>([]);
+  private http = inject(HttpClient);
+  private apiUrl = 'http://localhost:8080/api/attendance';
+
+  private attendanceSubject = new BehaviorSubject<Attendance[]>([]);
   public attendance$ = this.attendanceSubject.asObservable();
 
-  private mockAttendance: Attendance[] = [
-    { id: '1', staffId: '1', staffName: 'Sarah Johnson', department: 'Engineering', date: new Date('2025-11-20'), checkIn: '09:00', checkOut: '17:22', hoursWorked: 8.0, status: 'present' },
-    { id: '2', staffId: '2', staffName: 'Michael Chen', department: 'Engineering', date: new Date('2025-11-20'), checkIn: undefined, checkOut: undefined, hoursWorked: 0, status: 'leave' },
-    { id: '3', staffId: '3', staffName: 'Emily Rodriguez', department: 'Human Resources', date: new Date('2025-11-20'), checkIn: '08:00', checkOut: '16:05', hoursWorked: 8.0, status: 'present' },
-    { id: '4', staffId: '4', staffName: 'James Wilson', department: 'Sales', date: new Date('2025-11-20'), checkIn: '08:00', checkOut: '16:02', hoursWorked: 8.0, status: 'present' },
-    { id: '5', staffId: '5', staffName: 'Lisa Anderson', department: 'Marketing', date: new Date('2025-11-20'), checkIn: '09:00', checkOut: '17:11', hoursWorked: 8.0, status: 'present' },
-    { id: '6', staffId: '6', staffName: 'David Martinez', department: 'Engineering', date: new Date('2025-11-20'), checkIn: '09:00', checkOut: '17:06', hoursWorked: 8.0, status: 'present' },
-    { id: '7', staffId: '7', staffName: 'Jessica Taylor', department: 'Operations', date: new Date('2025-11-20'), checkIn: '08:00', checkOut: '16:23', hoursWorked: 8.0, status: 'present' },
-    { id: '8', staffId: '8', staffName: 'Robert Brown', department: 'Sales', date: new Date('2025-11-20'), checkIn: '08:30', checkOut: '16:14', hoursWorked: 8.0, status: 'present' }
-  ];
-
-  constructor() {
-    this.attendanceSubject.next(this.mockAttendance);
+  /**
+   * Get all attendance records from the backend
+   */
+  getAllAttendance(): Observable<Attendance[]> {
+    return this.http.get<AttendanceResponseDTO[]>(this.apiUrl).pipe(
+      map(dtos => this.convertDTOsToAttendance(dtos)),
+      catchError(this.handleError)
+    );
   }
 
-  getAllAttendance(): Observable<Attendance[]> {
-    return this.attendance$;
+  /**
+   * Get all attendance records as DTOs (raw backend response)
+   */
+  getAllAttendanceDTO(): Observable<AttendanceResponseDTO[]> {
+    return this.http.get<AttendanceResponseDTO[]>(this.apiUrl).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  /**
+   * Record attendance (clock in/out)
+   */
+  recordAttendance(request: AttendanceRequestDTO): Observable<AttendanceResponseDTO> {
+    return this.http.post<AttendanceResponseDTO>(`${this.apiUrl}/record`, request).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  /**
+   * Get attendance by ID
+   */
+  getAttendanceById(id: number): Observable<AttendanceResponseDTO> {
+    return this.http.get<AttendanceResponseDTO>(`${this.apiUrl}/${id}`).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  /**
+   * Get attendances by date
+   */
+  getAttendancesByDate(date: string): Observable<Attendance[]> {
+    return this.http.get<AttendanceResponseDTO[]>(`${this.apiUrl}/date/${date}`).pipe(
+      map(dtos => this.convertDTOsToAttendance(dtos)),
+      catchError(this.handleError)
+    );
+  }
+
+  /**
+   * Get attendances for a specific staff member
+   */
+  getStaffAttendances(staffId: number): Observable<Attendance[]> {
+    return this.http.get<AttendanceResponseDTO[]>(`${this.apiUrl}/staff/${staffId}`).pipe(
+      map(dtos => this.convertDTOsToAttendance(dtos)),
+      catchError(this.handleError)
+    );
+  }
+
+  /**
+   * Get attendances by department
+   */
+  getAttendancesByDepartment(departmentId: number): Observable<Attendance[]> {
+    return this.http.get<AttendanceResponseDTO[]>(`${this.apiUrl}/department/${departmentId}`).pipe(
+      map(dtos => this.convertDTOsToAttendance(dtos)),
+      catchError(this.handleError)
+    );
+  }
+
+  /**
+   * Get specific staff attendance for a specific date
+   */
+  getStaffAttendanceByDate(staffId: number, date: string): Observable<AttendanceResponseDTO | null> {
+    return this.http.get<AttendanceResponseDTO>(`${this.apiUrl}/staff/${staffId}/date/${date}`).pipe(
+      catchError((error) => {
+        if (error.status === 404) {
+          return of(null); // Return null if not found
+        }
+        return this.handleError(error);
+      })
+    );
+  }
+
+  /**
+   * Convert backend DTOs to frontend Attendance model
+   */
+  private convertDTOsToAttendance(dtos: AttendanceResponseDTO[]): Attendance[] {
+    return dtos.map(dto => this.convertDTOToAttendance(dto));
+  }
+
+  /**
+   * Convert a single DTO to Attendance model
+   */
+  private convertDTOToAttendance(dto: AttendanceResponseDTO): Attendance {
+    const checkIn = dto.arrivalTime ? this.extractTime(dto.arrivalTime) : undefined;
+    const checkOut = dto.departureTime ? this.extractTime(dto.departureTime) : undefined;
+    const hoursWorked = this.calculateHoursWorked(dto.arrivalTime, dto.departureTime);
+    const status = this.mapBackendStatusToFrontend(dto.status, dto.arrivalTime, dto.departureTime);
+
+    return {
+      id: dto.attendanceId.toString(),
+      staffId: dto.staffId.toString(),
+      staffName: `${dto.staffName} ${dto.staffSurname}`,
+      department: dto.departmentName || 'Unassigned',
+      date: new Date(dto.attendanceDate),
+      checkIn,
+      checkOut,
+      hoursWorked,
+      status
+    };
+  }
+
+  /**
+   * Extract time from datetime string (HH:mm format)
+   */
+  private extractTime(datetime: string): string {
+    try {
+      const date = new Date(datetime);
+      const hours = date.getHours().toString().padStart(2, '0');
+      const minutes = date.getMinutes().toString().padStart(2, '0');
+      return `${hours}:${minutes}`;
+    } catch {
+      return datetime; // Return as-is if parsing fails
+    }
+  }
+
+  /**
+   * Calculate hours worked between arrival and departure
+   */
+  private calculateHoursWorked(arrivalTime: string | null, departureTime: string | null): number {
+    if (!arrivalTime || !departureTime) return 0;
+
+    try {
+      const arrival = new Date(arrivalTime);
+      const departure = new Date(departureTime);
+      const diffMs = departure.getTime() - arrival.getTime();
+      const hours = diffMs / (1000 * 60 * 60);
+      return Math.round(hours * 10) / 10; // Round to 1 decimal place
+    } catch {
+      return 0;
+    }
+  }
+
+  /**
+   * Map backend status to frontend status
+   */
+  private mapBackendStatusToFrontend(
+    backendStatus: string,
+    arrivalTime: string | null,
+    departureTime: string | null
+  ): 'present' | 'absent' | 'late' | 'leave' | 'half-day' {
+    if (backendStatus === 'COMPLETE' || backendStatus === 'DEPARTURE_RECORDED') {
+      // Check if late (after 9:00 AM)
+      if (arrivalTime) {
+        const arrival = new Date(arrivalTime);
+        const hour = arrival.getHours();
+        const minute = arrival.getMinutes();
+        if (hour > 9 || (hour === 9 && minute > 0)) {
+          return 'late';
+        }
+      }
+      return 'present';
+    } else if (backendStatus === 'ARRIVAL_RECORDED') {
+      return 'present';
+    } else if (backendStatus === 'INCOMPLETE') {
+      return 'absent';
+    }
+    return 'present';
+  }
+
+  /**
+   * Handle HTTP errors
+   */
+  private handleError(error: HttpErrorResponse): Observable<never> {
+    let errorMessage = 'An error occurred';
+
+    if (error.error instanceof ErrorEvent) {
+      // Client-side error
+      errorMessage = `Error: ${error.error.message}`;
+    } else {
+      // Server-side error
+      errorMessage = error.error?.error || error.message || `Error Code: ${error.status}`;
+    }
+
+    console.error('AttendanceService Error:', errorMessage);
+    return throwError(() => new Error(errorMessage));
   }
 
   getTodayAttendance(): Observable<Attendance[]> {
-    return of(this.mockAttendance);
+    const today = new Date().toISOString().split('T')[0];
+    return this.getAttendancesByDate(today);
   }
 
   getStats(): Observable<AttendanceStats> {

@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { Staff, StaffRequest, Department } from '../models/staff';
+import { Staff, StaffRequest, StaffUpdate } from '../models/staff';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -44,7 +44,7 @@ export class StaffService {
     );
   }
 
-  updateStaff(id: number, staff: Partial<StaffRequest>): Observable<Staff> {
+  updateStaff(id: number, staff: StaffUpdate): Observable<Staff> {
     return this.http.put<Staff>(`${this.apiUrl}/${id}`, staff, {
       headers: this.getAuthHeaders()
     }).pipe(

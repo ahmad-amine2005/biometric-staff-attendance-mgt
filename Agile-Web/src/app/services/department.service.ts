@@ -3,12 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
-export interface Department {
-  id?: number;
-  name: string;
-  description?: string;
-  createdAt?: string;
-  updatedAt?: string;
+export interface DepartmentRequest {
+  dpmtName: string;
 }
 
 export interface DepartmentResponse {
@@ -46,13 +42,13 @@ export class DepartmentService {
     });
   }
 
-  createDepartment(department: Department): Observable<DepartmentResponse> {
+  createDepartment(department: DepartmentRequest): Observable<DepartmentResponse> {
     return this.http.post<DepartmentResponse>(this.apiUrl, department, {
       headers: this.getAuthHeaders()
     });
   }
 
-  updateDepartment(id: number, department: Department): Observable<DepartmentResponse> {
+  updateDepartment(id: number, department: DepartmentRequest): Observable<DepartmentResponse> {
     return this.http.put<DepartmentResponse>(`${this.apiUrl}/${id}`, department, {
       headers: this.getAuthHeaders()
     });

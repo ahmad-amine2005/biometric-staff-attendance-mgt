@@ -23,6 +23,15 @@ export interface StaffRequest {
   endTime_contract: string;
 }
 
+export interface StaffUpdate {
+  name?: string;
+  surname?: string;
+  email?: string;
+  departmentId?: number;
+  noAbsence?: number;
+  active?: boolean;
+}
+
 export interface Department {
   id: string;
   name: string;

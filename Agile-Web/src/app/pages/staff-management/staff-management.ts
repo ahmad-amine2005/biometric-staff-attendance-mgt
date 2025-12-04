@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { StaffService } from '../../services/staff';
-import { Staff, StaffRequest } from '../../models/staff';
-import { DepartmentService, DepartmentResponse } from '../../services/department.service';
+import { Staff, StaffRequest, StaffUpdate } from '../../models/staff';
+import { DepartmentService, DepartmentResponse, DepartmentRequest } from '../../services/department.service';
 
 @Component({
   selector: 'app-staff-management',
@@ -18,8 +18,12 @@ export class StaffManagement implements OnInit {
   departments: DepartmentResponse[] = [];
   searchQuery: string = '';
   showAddModal: boolean = false;
+  showEditModal: boolean = false;
   showFingerprintModal: boolean = false;
+  showDepartmentModal: boolean = false;
+  showEditDepartmentModal: boolean = false;
   selectedStaff: Staff | null = null;
+  selectedDepartment: DepartmentResponse | null = null;
   isScanning: boolean = false;
   errorMessage: string = '';
   isLoading: boolean = false;
@@ -32,6 +36,23 @@ export class StaffManagement implements OnInit {
     noDaysPerWeek_contract: 5,
     startTime_contract: '',
     endTime_contract: ''
+  };
+
+  editStaff: StaffUpdate = {
+    name: '',
+    surname: '',
+    email: '',
+    departmentId: 0,
+    noAbsence: 0,
+    active: true
+  };
+
+  newDepartment: DepartmentRequest = {
+    dpmtName: ''
+  };
+
+  editDepartment: DepartmentRequest = {
+    dpmtName: ''
   };
 
   constructor(
@@ -205,6 +226,147 @@ export class StaffManagement implements OnInit {
 
   getFullName(staff: Staff): string {
     return `${staff.name || ''} ${staff.surname || ''}`.trim();
+  }
+
+  // Department CRUD Methods
+  openDepartmentModal() {
+    this.showDepartmentModal = true;
+    this.errorMessage = '';
+    this.newDepartment = { dpmtName: '' };
+  }
+
+  closeDepartmentModal() {
+    this.showDepartmentModal = false;
+    this.errorMessage = '';
+  }
+
+  saveDepartment() {
+    if (!this.newDepartment.dpmtName || this.newDepartment.dpmtName.trim() === '') {
+      this.errorMessage = 'Department name is required';
+      return;
+    }
+
+    this.isLoading = true;
+    this.errorMessage = '';
+
+    this.departmentService.createDepartment(this.newDepartment).subscribe({
+      next: () => {
+        this.closeDepartmentModal();
+        this.loadDepartments();
+        this.isLoading = false;
+      },
+      error: (error) => {
+        this.errorMessage = error.message || 'Failed to create department';
+        this.isLoading = false;
+        console.error('Error creating department:', error);
+      }
+    });
+  }
+
+  openEditDepartmentModal(department: DepartmentResponse) {
+    this.selectedDepartment = department;
+    this.showEditDepartmentModal = true;
+    this.errorMessage = '';
+    this.editDepartment = { dpmtName: department.dpmtName };
+  }
+
+  closeEditDepartmentModal() {
+    this.showEditDepartmentModal = false;
+    this.selectedDepartment = null;
+    this.errorMessage = '';
+  }
+
+  updateDepartment() {
+    if (!this.selectedDepartment || !this.editDepartment.dpmtName || this.editDepartment.dpmtName.trim() === '') {
+      this.errorMessage = 'Department name is required';
+      return;
+    }
+
+    this.isLoading = true;
+    this.errorMessage = '';
+
+    this.departmentService.updateDepartment(this.selectedDepartment.dpmtId, this.editDepartment).subscribe({
+      next: () => {
+        this.closeEditDepartmentModal();
+        this.loadDepartments();
+        this.loadStaff(); // Reload staff to update department names
+        this.isLoading = false;
+      },
+      error: (error) => {
+        this.errorMessage = error.message || 'Failed to update department';
+        this.isLoading = false;
+        console.error('Error updating department:', error);
+      }
+    });
+  }
+
+  deleteDepartment(department: DepartmentResponse) {
+    if (confirm(`Are you sure you want to delete the department "${department.dpmtName}"? This action cannot be undone if the department has staff members.`)) {
+      this.isLoading = true;
+      this.departmentService.deleteDepartment(department.dpmtId).subscribe({
+        next: () => {
+          this.loadDepartments();
+          this.loadStaff();
+          this.isLoading = false;
+        },
+        error: (error) => {
+          this.errorMessage = error.message || 'Failed to delete department';
+          this.isLoading = false;
+          console.error('Error deleting department:', error);
+        }
+      });
+    }
+  }
+
+  // Staff Edit Methods
+  openEditModal(staff: Staff) {
+    this.selectedStaff = staff;
+    this.showEditModal = true;
+    this.errorMessage = '';
+    this.editStaff = {
+      name: staff.name || '',
+      surname: staff.surname || '',
+      email: staff.email || '',
+      departmentId: staff.departmentId || 0,
+      noAbsence: staff.noAbsence || 0,
+      active: staff.active !== undefined ? staff.active : true
+    };
+  }
+
+  closeEditModal() {
+    this.showEditModal = false;
+    this.selectedStaff = null;
+    this.errorMessage = '';
+  }
+
+  updateStaff() {
+    if (!this.selectedStaff) return;
+
+    if (!this.editStaff.name || !this.editStaff.surname || !this.editStaff.email) {
+      this.errorMessage = 'Name, surname, and email are required';
+      return;
+    }
+
+    if (!this.editStaff.departmentId || this.editStaff.departmentId === 0) {
+      this.errorMessage = 'Please select a department';
+      return;
+    }
+
+    this.isLoading = true;
+    this.errorMessage = '';
+
+    this.staffService.updateStaff(this.selectedStaff.userId, this.editStaff).subscribe({
+      next: () => {
+        this.closeEditModal();
+        this.loadStaff();
+        this.isLoading = false;
+      },
+      error: (error) => {
+        this.errorMessage = error.message || 'Failed to update staff member';
+        this.isLoading = false;
+        console.error('Error updating staff:', error);
+      }
+    });
   }
 
 }

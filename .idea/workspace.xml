@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1ac8ee66-3e27-4bde-8182-e73b79ef6a75" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/.angular/cache/20.3.11/attendflow/.tsbuildinfo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/pages/dashboard/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/src/app/pages/dashboard/dashboard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/pages/dashboard/dashboard.scss" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/src/app/pages/dashboard/dashboard.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/pages/dashboard/dashboard.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/src/app/pages/dashboard/dashboard.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-Web/src/app/services/attendance.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Agile-Web/src/app/services/attendance.ts" afterDir="false" />
-    </list>
+    <list default="true" id="1ac8ee66-3e27-4bde-8182-e73b79ef6a75" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -223,7 +217,7 @@
       <workItem from="1764786698853" duration="8194000" />
       <workItem from="1764799391325" duration="2001000" />
       <workItem from="1764801481374" duration="122000" />
-      <workItem from="1764820944982" duration="6843000" />
+      <workItem from="1764820944982" duration="7274000" />
     </task>
     <servers />
   </component>

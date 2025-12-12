@@ -51,7 +51,8 @@
         {
           "faceIDPermission": "Allow Agile Mobile to use Face ID to verify your identity for attendance tracking."
         }
-      ]
+      ],
+      "expo-web-browser"
     ],
     "experiments": {
       "typedRoutes": true,

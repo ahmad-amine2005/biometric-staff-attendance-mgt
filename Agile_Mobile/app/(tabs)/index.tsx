@@ -112,6 +112,7 @@ export default function StaffPortalLogin() {
     }
 
     try {
+      // First, perform biometric authentication
       const result = await LocalAuthentication.authenticateAsync({
         promptMessage: `Verify your ${biometricType}`,
         fallbackLabel: "Use Passcode",
@@ -120,7 +121,7 @@ export default function StaffPortalLogin() {
       });
 
       if (result.success) {
-        // record attendance and notify
+        // Biometric successful - now record attendance
         recordAttendance(employeeId);
         showToast(
           "Authentication successful — recording attendance.",
@@ -141,66 +142,134 @@ export default function StaffPortalLogin() {
   };
 
   const recordAttendance = async (empId: string) => {
-    const BASE_URL = (global as any)?.API_BASE_URL || "http://10.0.2.2:8081";
+    // Base URL configuration - adjust these based on your environment
+    const BASE_URL = Platform.select({
+      ios: "http://localhost:8081", // For iOS simulator
+      android: "http://10.0.2.2:8081", // For Android emulator
+      default: "http://192.168.1.248:8081", // Fallback
+    });
 
-    // Backend expects numeric staffId. If you use codes (EMP001), replace this with a lookup.
+    // Validate employee ID is numeric (as per backend Long type)
     const numericId = parseInt(empId, 10);
-    if (Number.isNaN(numericId)) {
-      showToast(
-        "Please enter a numeric staff ID. Configure a lookup for codes if needed.",
-        "error"
-      );
+    if (Number.isNaN(numericId) || numericId <= 0) {
+      showToast("Please enter a valid numeric employee ID.", "error");
       return;
     }
 
+    // Format current date and time according to your DTO patterns
     const now = new Date();
-    const pad = (n: number) => n.toString().padStart(2, "0");
-    const formatDate = (d: Date) =>
-      `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
-    const formatDateTime = (d: Date) =>
-      `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(
-        d.getHours()
-      )}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
 
+    // Format date as yyyy-MM-dd (matching @JsonFormat pattern in AttendanceRequestDTO)
+    const formatDate = (date: Date) => {
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, "0");
+      const day = String(date.getDate()).padStart(2, "0");
+      return `${year}-${month}-${day}`;
+    };
+
+    // Format datetime as yyyy-MM-dd'T'HH:mm:ss (matching @JsonFormat pattern in AttendanceRequestDTO)
+    const formatDateTime = (date: Date) => {
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, "0");
+      const day = String(date.getDate()).padStart(2, "0");
+      const hours = String(date.getHours()).padStart(2, "0");
+      const minutes = String(date.getMinutes()).padStart(2, "0");
+      const seconds = String(date.getSeconds()).padStart(2, "0");
+      return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
+    };
+
+    // Create request object matching AttendanceRequestDTO structure
     const attendanceRecord = {
       staffId: numericId,
-      attendanceDate: formatDate(now),
-      attendanceTime: formatDateTime(now),
+      attendanceDate: formatDate(now), // yyyy-MM-dd
+      attendanceTime: formatDateTime(now), // yyyy-MM-dd'T'HH:mm:ss
     };
+
+    console.log("Sending attendance data:", attendanceRecord);
+    console.log("To URL:", `${BASE_URL}/api/attendance/record`);
 
     setSending(true);
     try {
       const res = await fetch(`${BASE_URL}/api/attendance/record`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
         body: JSON.stringify(attendanceRecord),
       });
 
+      // Parse response based on status
       if (res.ok) {
-        try {
-          const json = await res.json();
-          console.log("Attendance saved:", json);
-        } catch (_) {
-          console.log("Attendance saved (no json)");
+        const responseData = await res.json();
+        console.log("Attendance saved:", responseData);
+
+        // Show appropriate message based on attendance status
+        let successMessage = "Attendance recorded successfully";
+        if (responseData.status === "ARRIVAL_RECORDED") {
+          successMessage = `Check-in recorded at ${new Date(
+            responseData.arrivalTime
+          ).toLocaleTimeString()}`;
+        } else if (responseData.status === "DEPARTURE_RECORDED") {
+          successMessage = `Check-out recorded at ${new Date(
+            responseData.departureTime
+          ).toLocaleTimeString()}`;
         }
-        showToast("Attendance recorded successfully.", "success");
+
+        showToast(successMessage, "success");
+
+        // Optional: Clear input after successful recording
+        // setEmployeeId("");
       } else {
-        const text = await res.text();
-        let message = "Failed to record attendance.";
+        // Handle different error responses from backend
+        let errorMessage = "Failed to record attendance";
+
         try {
-          const obj = JSON.parse(text);
-          message = obj.error || JSON.stringify(obj);
-        } catch (_) {
-          message = text || message;
+          // Try to parse error JSON from backend
+          const errorText = await res.text();
+          const errorObj = JSON.parse(errorText);
+          errorMessage = errorObj.error || errorMessage;
+        } catch (parseError) {
+          // If not JSON, use status-based messages
+          if (res.status === 400) {
+            errorMessage = "Invalid request. Please check your employee ID";
+          } else if (res.status === 404) {
+            errorMessage = "Employee not found. Please check your ID";
+          } else if (res.status === 409) {
+            errorMessage = "Attendance already completed for today";
+          } else if (res.status >= 500) {
+            errorMessage = "Server error. Please try again later";
+          }
         }
-        showToast(message, "error");
+
+        showToast(errorMessage, "error");
       }
     } catch (err) {
       console.error("Network error recording attendance:", err);
-      showToast("Unable to reach attendance server.", "error");
+
+      // Check for specific network errors
+      if (err instanceof TypeError) {
+        showToast(
+          "Network error. Check your connection and server URL",
+          "error"
+        );
+      } else {
+        showToast("Unable to reach attendance server.", "error");
+      }
     } finally {
       setSending(false);
     }
+  };
+
+  // Optional: Add a manual submit button for testing without biometrics
+  const handleManualSubmit = () => {
+    if (!employeeId.trim()) {
+      showToast("Please enter your Employee ID first.", "error");
+      return;
+    }
+
+    // Directly call recordAttendance without biometric verification
+    recordAttendance(employeeId);
   };
 
   return (
@@ -245,10 +314,13 @@ export default function StaffPortalLogin() {
           placeholderTextColor="#999"
           value={employeeId}
           onChangeText={setEmployeeId}
-          autoCapitalize="characters"
+          keyboardType="numeric" // Ensure numeric keyboard
+          autoCapitalize="none"
+          editable={!sending}
         />
       </View>
 
+      {/* Biometric Scan Button */}
       <TouchableOpacity
         style={[
           styles.fingerprintButton,
@@ -280,6 +352,33 @@ export default function StaffPortalLogin() {
           : `Tap to scan ${biometricType.toLowerCase() || "biometric"}`}
       </Text>
 
+      {/* Optional: Manual Submit Button for Testing */}
+      {!isBiometricSupported && (
+        <TouchableOpacity
+          style={[
+            styles.fingerprintButton,
+            sending && styles.fingerprintButtonDisabled,
+          ]}
+          onPress={handleManualSubmit}
+          activeOpacity={0.7}
+          disabled={sending}
+        >
+          <View
+            style={[styles.fingerprintCircle, { backgroundColor: "#4CAF50" }]}
+          >
+            {sending ? (
+              <ActivityIndicator size="large" color="#FFFFFF" />
+            ) : (
+              <MaterialCommunityIcons
+                name="account-check"
+                size={60}
+                color="#FFFFFF"
+              />
+            )}
+          </View>
+        </TouchableOpacity>
+      )}
+
       {/* Toast */}
       {toast.visible && (
         <Animated.View
@@ -298,6 +397,7 @@ export default function StaffPortalLogin() {
   );
 }
 
+// Styles remain EXACTLY THE SAME as your original
 const styles = StyleSheet.create({
   container: {
     flex: 1,

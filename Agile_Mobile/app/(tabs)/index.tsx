@@ -141,7 +141,7 @@ export default function StaffPortalLogin() {
   };
 
   const recordAttendance = async (empId: string) => {
-    const BASE_URL = (global as any)?.API_BASE_URL || "http://10.0.2.2:8080";
+    const BASE_URL = (global as any)?.API_BASE_URL || "http://10.0.2.2:8081";
 
     // Backend expects numeric staffId. If you use codes (EMP001), replace this with a lookup.
     const numericId = parseInt(empId, 10);

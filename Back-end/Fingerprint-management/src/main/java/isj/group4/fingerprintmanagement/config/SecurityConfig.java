@@ -40,7 +40,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         // Public endpoints - no authentication required
                         .requestMatchers("/auth/**", "/api/auth/**").permitAll()
-                        .requestMatchers(org.springframework.http.HttpMethod.POST, "/api/attendance/record").permitAll()
+                        .requestMatchers(org.springframework.http.HttpMethod.POST,"/api/attendance/record").permitAll()
                         // All other requests require authentication
                         .anyRequest().authenticated()
                 )
@@ -56,7 +56,7 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200", "https://ahmad-amine2005.github.io/biometric-staff-attendance-mgt"));
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200", "https://ahmad-amine2005.github.io"));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("*"));
         configuration.setAllowCredentials(true);

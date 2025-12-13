@@ -1,1 +1,0 @@
-var t={production:!1,apiEntry:"https://biometric-staff-attendance-mgt-production.up.railway.app:8080",apiUrl:"https://biometric-staff-attendance-mgt-production.up.railway.app:8080/api"};export{t as a};

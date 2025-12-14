@@ -32,6 +32,9 @@ export default function StaffPortalLogin() {
   const opacity = useRef(new Animated.Value(0)).current;
   const toastTimeout = useRef<number | null>(null);
 
+  const BASE_URL =
+    "https://biometric-staff-attendance-mgt-production.up.railway.app";
+
   // Show a transient toast/snackbar
   const showToast = (
     message: string,
@@ -143,11 +146,7 @@ export default function StaffPortalLogin() {
 
   const recordAttendance = async (empId: string) => {
     // Base URL configuration - adjust these based on your environment
-    const BASE_URL = Platform.select({
-      ios: "http://localhost:8081", // For iOS simulator
-      android: "http://10.0.2.2:8081", // For Android emulator
-      default: "http://192.168.1.248:8081", // Fallback
-    });
+    const API_URL = `${BASE_URL}/api/attendance/record`;
 
     // Validate employee ID is numeric (as per backend Long type)
     const numericId = parseInt(empId, 10);
@@ -190,7 +189,7 @@ export default function StaffPortalLogin() {
 
     setSending(true);
     try {
-      const res = await fetch(`${BASE_URL}/api/attendance/record`, {
+      const res = await fetch(API_URL, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

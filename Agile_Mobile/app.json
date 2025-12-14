@@ -11,8 +11,10 @@
     "ios": {
       "supportsTablet": true,
       "infoPlist": {
-        "NSFaceIDUsageDescription": "We need to use Face ID to verify your identity for attendance tracking."
-      }
+        "NSFaceIDUsageDescription": "We need to use Face ID to verify your identity for attendance tracking.",
+        "ITSAppUsesNonExemptEncryption": false
+      },
+      "bundleIdentifier": "com.Attendee-ios"
     },
     "android": {
       "adaptiveIcon": {
@@ -25,8 +27,11 @@
       "predictiveBackGestureEnabled": false,
       "permissions": [
         "USE_BIOMETRIC",
-        "USE_FINGERPRINT"
-      ]
+        "USE_FINGERPRINT",
+        "android.permission.USE_BIOMETRIC",
+        "android.permission.USE_FINGERPRINT"
+      ],
+      "package": "com.Atttendee"
     },
     "web": {
       "output": "static",
@@ -57,6 +62,12 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "2970c43d-3481-423a-9f6d-f98676e5819b"
+      }
     }
   }
 }

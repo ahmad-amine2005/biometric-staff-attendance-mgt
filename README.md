@@ -57,3 +57,10 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+ng build --configuration production
+
+This command builds the project using the production configuration, which includes optimizations for performance and speed.
+
+ng deploy --base-href=/biometric-staff-attendance-mgt/
+This command deploys the built project to a hosting service, setting the base URL for the application to `/biometric-staff-attendance-mgt/`.

@@ -49,7 +49,7 @@
                 }
               ],
               "outputHashing": "all",
-              "baseHref": "/biometric-staff-attendance-mgt/"
+              "baseHref": "/"
             },
             "development": {
               "optimization": false,

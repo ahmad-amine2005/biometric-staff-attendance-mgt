@@ -163,12 +163,12 @@ java -jar target/fingerprint-management-*. jar
 ```bash
 cd Agile-Web
 ng build --configuration production
+ng deploy --base-href=/biometric-staff-attendance-mgt/
 
 # This command builds the project using the production configuration, which includes optimizations for performance and speed.
+# This command deploys the built project to a hosting service, setting the base URL for the application to `/biometric-staff-attendance-mgt/`.
 ```
 
-ng deploy --base-href=/biometric-staff-attendance-mgt/
-This command deploys the built project to a hosting service, setting the base URL for the application to `/biometric-staff-attendance-mgt/`.
 
 ### Mobile App
 ```bash
@@ -191,5 +191,11 @@ Main entities:
 - **Fingerprint**: Biometric authentication data
 
 ## 🤝 Contributing
+- [sims-yann](https://sims-yann.me)
+- Ahmad-amine
+- Foning Luc Xavier
+- Kengne Gloria
+- Makuetche Nwetom Patricia
+- Kana Elsa
 
 

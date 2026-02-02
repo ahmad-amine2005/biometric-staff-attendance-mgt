@@ -1,0 +1,49 @@
+name: Deploy Monolithic Spring Boot App
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Create app directory on VPS
+        run: |
+          ssh ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} \
+          "mkdir -p /home/${{ secrets.VPS_USER }}/app/monolith-app"
+
+      - name: Sync project to VPS
+        run: |
+          rsync -avz --delete ./ \
+          ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/home/${{ secrets.VPS_USER }}/app/monolith-app/
+
+      - name: Build and run container on VPS
+        run: |
+          ssh ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} "
+            cd /home/${{ secrets.VPS_USER }}/app/monolith-app &&
+            docker build -t monolith-app:latest . &&
+            docker stop monolith-app || true &&
+            docker rm monolith-app || true &&
+            docker run -d
+              --name monolith-app
+              --network monolith-net
+              -p ${{ secrets.APP_PORT }}:8085
+              -e SERVER_PORT=8085
+              -e DB_URL=jdbc:mysql://monolith-mysql:3306/monolith_db
+              -e DB_USER=monolith
+              -e DB_PASSWORD=monolith
+              monolith-app:latest
+          "

@@ -1,4 +1,4 @@
-name: Deploy Monolithic Spring Boot App
+name: Deploy Fingerprint-management Spring Boot App
 
 on:
   push:
@@ -23,17 +23,17 @@ jobs:
       - name: Create app directory on VPS
         run: |
           ssh ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} \
-          "mkdir -p /home/${{ secrets.VPS_USER }}/app/monolith-app"
+          "mkdir -p /home/${{ secrets.VPS_USER }}/app/fingerprint-management"
 
       - name: Sync project to VPS
         run: |
           rsync -avz --delete ./ \
-          ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/home/${{ secrets.VPS_USER }}/app/monolith-app/
+          ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/home/${{ secrets.VPS_USER }}/app/fingerprint-management/
 
       - name: Build and run container on VPS
         run: |
           ssh ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} "
-            cd /home/${{ secrets.VPS_USER }}/app/monolith-app &&
+            cd /home/${{ secrets.VPS_USER }}/app/fingerprint-management/Back-end/Fingerprint-management &&
             docker build -t monolith-app:latest . &&
             docker stop monolith-app || true &&
             docker rm monolith-app || true &&

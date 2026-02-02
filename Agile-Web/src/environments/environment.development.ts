@@ -1,5 +1,5 @@
 export const environment = {
   production: false,
-  apiEntry: 'https://biometric-staff-attendance-mgt-production.up.railway.app',
-  apiUrl: 'https://biometric-staff-attendance-mgt-production.up.railway.app/api'
+  apiEntry: 'http://72.62.107.114:8085',
+  apiUrl: 'http://72.62.107.114:8085/api'
 };

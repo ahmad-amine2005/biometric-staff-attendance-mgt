@@ -68,7 +68,7 @@ public class SecurityConfig {
 
         // Restricted CORS for all other endpoints
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200", "https://ahmad-amine2005.github.io", "http://72.62.107.114:4300"));
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200", "https://ahmad-amine2005.github.io", "http://72.62.107.114:*"));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("*"));
         configuration.setAllowCredentials(true);

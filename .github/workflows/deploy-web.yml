@@ -34,7 +34,7 @@ jobs:
 
       - name: Install dependencies
         working-directory: Agile-Web
-        run: npm ci
+        run: npm install
 
       - name: Build Angular app
         working-directory: Agile-Web

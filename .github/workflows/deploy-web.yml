@@ -30,7 +30,7 @@ jobs:
 
       - name: Sync project to VPS
         run: |
-          rsync -avz --delete ./Agile-Web/ \
+          rsync -avz --delete ./ \
           ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/home/${{ secrets.VPS_USER }}/app/fingerprint-management/
 
       - name: Build and run container on VPS

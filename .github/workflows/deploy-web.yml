@@ -1,0 +1,38 @@
+name: Deploy Angular App to VPS
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'Agile-Web/**'
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Create app directory on VPS
+        run: |
+          ssh ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} \
+          "mkdir -p /home/${{ secrets.VPS_USER }}/app/fingerprint-management"
+
+      - name: Sync project to VPS
+        run: |
+          rsync -avz --delete ./ \
+          ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/home/${{ secrets.VPS_USER }}/app/fingerprint-management/
+
+      - name: Build and run container on VPS
+        run: |
+          ssh ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} "cd /home/${{ secrets.VPS_USER }}/app/fingerprint-management/Agile-Web && docker build -t agile-web:latest . && docker stop agile-web || true && docker rm agile-web || true && docker run -d --name agile-web --network monolith-net -p 4300:4300 agile-web:latest"

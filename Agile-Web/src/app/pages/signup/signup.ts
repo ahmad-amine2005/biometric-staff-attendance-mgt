@@ -84,22 +84,44 @@ export class SignupComponent {
     };
 
     this.adminService.register(registerData).subscribe({
-      next: () => {
-        console.log('Signup successful');
+      next: (response) => {
+        console.log('Signup successful:', response);
+        // Clear any previous errors
+        this.resultError = '';
+        // Navigate to login page on success
         this.router.navigate(['/login']);
       },
       error: (err) => {
         console.error('Signup failed:', err);
-        this.resultError = 'signup failed: ' + (err.error?.message || 'server error');
+        
+        let message = 'Registration failed. Please try again.';
 
-        let message = 'Registration failed';
+        // Handle backend error responses
+        if (err?.error) {
+          // Backend returns error message in 'error' key (from AuthController)
+          if (err.error.error) {
+            message = err.error.error;
+          } 
+          // Handle validation errors from Spring @Valid
+          else if (err.error.message) {
+            message = err.error.message;
+          }
+          // Handle Spring validation errors array
+          else if (Array.isArray(err.error) && err.error.length > 0) {
+            message = err.error[0].defaultMessage || err.error[0].message || message;
+          }
+        }
 
-        if(err?.error?.message){
-          message = err.error.message;
-        } else if (err?.status === 409){
-          message = 'Resource already available';
-        } else if (err?.message) {
-          message = 'A Service is unavailable. Try again later!';
+        // Handle HTTP status codes
+        if (err?.status === 400) {
+          // Bad request - validation or business logic error
+          // Message already set from error body above
+        } else if (err?.status === 409) {
+          message = 'Email already registered';
+        } else if (err?.status === 0 || err?.status === undefined) {
+          message = 'Unable to connect to server. Please check your connection.';
+        } else if (err?.status >= 500) {
+          message = 'Server error. Please try again later.';
         }
 
         this.resultError = message;

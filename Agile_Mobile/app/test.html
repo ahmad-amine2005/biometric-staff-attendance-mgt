@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ProspecBank Digital Solutions</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: #333;
+      }
+
+      .hero {
+        background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        color: white;
+        padding: 80px 20px;
+        text-align: center;
+      }
+
+      .hero h1 {
+        font-size: 3em;
+        margin-bottom: 20px;
+        font-weight: 700;
+      }
+
+      .hero p {
+        font-size: 1.3em;
+        max-width: 800px;
+        margin: 0 auto 30px;
+        line-height: 1.8;
+      }
+
+      .cta-button {
+        display: inline-block;
+        background: #ff6b35;
+        color: white;
+        padding: 15px 40px;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 1.1em;
+        font-weight: 600;
+        transition: background 0.3s;
+        margin-top: 20px;
+      }
+
+      .cta-button:hover {
+        background: #e85a2a;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 60px 20px;
+      }
+
+      .section-title {
+        text-align: center;
+        font-size: 2.5em;
+        margin-bottom: 50px;
+        color: #1e3c72;
+      }
+
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 40px;
+        margin-bottom: 60px;
+      }
+
+      .service-card {
+        background: #f8f9fa;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+      }
+
+      .service-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      .service-card h3 {
+        color: #1e3c72;
+        font-size: 1.5em;
+        margin-bottom: 15px;
+      }
+
+      .service-card p {
+        color: #555;
+        line-height: 1.8;
+      }
+
+      .pricing-section {
+        background: #f8f9fa;
+        padding: 60px 20px;
+      }
+
+      .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .pricing-card {
+        background: white;
+        padding: 40px 30px;
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .pricing-card h3 {
+        color: #1e3c72;
+        font-size: 1.5em;
+        margin-bottom: 15px;
+      }
+
+      .price {
+        font-size: 2em;
+        color: #ff6b35;
+        font-weight: 700;
+        margin: 20px 0;
+      }
+
+      .pricing-card p {
+        color: #666;
+        margin-bottom: 10px;
+      }
+
+      .contact-section {
+        background: white;
+        padding: 60px 20px;
+      }
+
+      .contact-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 40px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .contact-card {
+        padding: 30px;
+        background: #f8f9fa;
+        border-radius: 10px;
+        border-left: 4px solid #1e3c72;
+      }
+
+      .contact-card h3 {
+        color: #1e3c72;
+        margin-bottom: 15px;
+        font-size: 1.3em;
+      }
+
+      .contact-card p {
+        color: #555;
+        line-height: 1.8;
+      }
+
+      .footer {
+        background: #1e3c72;
+        color: white;
+        text-align: center;
+        padding: 30px 20px;
+      }
+
+      .value-prop {
+        text-align: center;
+        max-width: 900px;
+        margin: 0 auto 60px;
+        font-size: 1.1em;
+        color: #555;
+        line-height: 1.9;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="hero">
+      <h1>ProspecBank Digital Solutions</h1>
+      <p>
+        Transforming Banking Relationships Through Intelligent Automation and
+        Data-Driven Customer Engagement
+      </p>
+      <p style="font-size: 1.1em; margin-top: 20px">
+        Your Strategic Partner in Digital Marketing, CRM Excellence, SEO
+        Optimization, and Process Automation for Financial Institutions
+      </p>
+      <a href="#contact" class="cta-button">Schedule Your Consultation</a>
+    </div>
+
+    <div class="container">
+      <p class="value-prop">
+        In Cameroon's rapidly evolving banking landscape, financial institutions
+        require innovative solutions to identify qualified prospects, optimize
+        customer relationships, and drive sustainable growth. ProspecBank
+        Digital Solutions delivers an integrated ecosystem of automation tools,
+        intelligent data collection, and comprehensive CRM implementation
+        designed specifically for the banking sector.
+      </p>
+
+      <h2 class="section-title">Our Core Services</h2>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <h3>Automated Prospecting & Data Intelligence</h3>
+          <p>
+            We deploy legal and ethical data scraping technologies to collect
+            and analyze public information from directories, institutional
+            platforms, trade registers, and professional networks. Our system
+            creates highly qualified, segmented databases tailored to your
+            banking products, reducing prospecting time by seventy-five percent
+            while significantly improving lead quality and conversion rates.
+          </p>
+        </div>
+
+        <div class="service-card">
+          <h3>Multichannel Prospecting Automation</h3>
+          <p>
+            Our platform implements automated communication sequences across
+            email, LinkedIn, and WhatsApp Business. Each touchpoint is
+            personalized and strategically timed to nurture prospects throughout
+            their conversion journey. Automated tracking and analytics ensure
+            measurable results and continuous optimization of your outreach
+            campaigns.
+          </p>
+        </div>
+
+        <div class="service-card">
+          <h3>Banking-Focused CRM Implementation</h3>
+          <p>
+            We implement and customize leading CRM solutions including Zoho and
+            HubSpot specifically for banking operations. Your CRM becomes the
+            central hub for customer data management, opportunity tracking, team
+            coordination, and performance monitoring through comprehensive
+            dashboards that provide real-time insights into your sales pipeline
+            and customer relationships.
+          </p>
+        </div>
+
+        <div class="service-card">
+          <h3>Digital Marketing Strategy & SEO</h3>
+          <p>
+            Our digital marketing expertise ensures your institution maintains
+            strong online visibility and attracts qualified leads through
+            organic channels. We optimize your digital presence to reach
+            decision-makers in your target segments, positioning your bank as
+            the preferred financial partner in your market.
+          </p>
+        </div>
+
+        <div class="service-card">
+          <h3>Team Training & Capacity Building</h3>
+          <p>
+            Technology adoption succeeds only when teams are properly equipped.
+            We provide comprehensive training programs that enable your sales
+            and marketing personnel to leverage new systems effectively,
+            ensuring sustainable performance improvements and maximum return on
+            your technology investment.
+          </p>
+        </div>
+
+        <div class="service-card">
+          <h3>Ongoing Support & Optimization</h3>
+          <p>
+            Our relationship extends beyond implementation. We provide
+            continuous monitoring, monthly performance reviews, system
+            optimization, and strategic guidance to ensure your automation
+            infrastructure evolves with your business needs and market dynamics.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="pricing-section">
+      <div class="container">
+        <h2 class="section-title">Investment Structure</h2>
+        <p
+          style="
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 1.1em;
+            color: #555;
+          "
+        >
+          Flexible pricing designed to scale with your institution's size and
+          objectives. All packages include consultation and customization to
+          ensure alignment with your strategic goals.
+        </p>
+
+        <div class="pricing-grid">
+          <div class="pricing-card">
+            <h3>Data Intelligence Service</h3>
+            <div class="price">From 300,000 FCFA</div>
+            <p><strong>Monthly Subscription</strong></p>
+            <p>Comprehensive data scraping and prospect segmentation</p>
+            <p>Regular database updates and quality assurance</p>
+            <p>Customized segmentation aligned with your product portfolio</p>
+          </div>
+
+          <div class="pricing-card">
+            <h3>Automation & Email Marketing</h3>
+            <div class="price">From 250,000 FCFA</div>
+            <p><strong>Monthly Subscription</strong></p>
+            <p>
+              Multichannel campaign automation across email, LinkedIn, and
+              WhatsApp
+            </p>
+            <p>Performance tracking and analytics</p>
+            <p>Continuous campaign optimization</p>
+          </div>
+
+          <div class="pricing-card">
+            <h3>CRM & Digital Training Package</h3>
+            <div class="price">From 500,000 FCFA</div>
+            <p><strong>One-Time Implementation</strong></p>
+            <p>Complete CRM setup and configuration</p>
+            <p>Comprehensive team training program</p>
+            <p>Digital marketing foundations and best practices</p>
+          </div>
+        </div>
+
+        <p
+          style="
+            text-align: center;
+            margin-top: 40px;
+            font-size: 1em;
+            color: #666;
+            font-style: italic;
+          "
+        >
+          Pricing is indicative and will be tailored based on your institution's
+          specific requirements, transaction volume, and operational scale.
+          Contact us for a detailed proposal aligned with your budget and
+          objectives.
+        </p>
+      </div>
+    </div>
+
+    <div class="contact-section" id="contact">
+      <div class="container">
+        <h2 class="section-title">Connect With Us</h2>
+
+        <div class="contact-grid">
+          <div class="contact-card">
+            <h3>Head Office</h3>
+            <p><strong>ProspecBank Digital Solutions</strong></p>
+            <p>Yaoundé Business District</p>
+            <p>Centre Region, Cameroon</p>
+          </div>
+
+          <div class="contact-card">
+            <h3>Direct Contact</h3>
+            <p><strong>Phone:</strong> +237 675 17 34 77</p>
+            <p><strong>Email:</strong> contact@prospecbank.cm</p>
+            <p>
+              <strong>Business Hours:</strong> Monday - Friday, 8:00 AM - 6:00
+              PM
+            </p>
+          </div>
+
+          <div class="contact-card">
+            <h3>Professional Networks</h3>
+            <p><strong>LinkedIn:</strong> ProspecBank Digital Solutions</p>
+            <p><strong>WhatsApp Business:</strong> +237 699 88 87 78</p>
+            <p><strong>Website:</strong> www.prospecbank.cm</p>
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 50px">
+          <a href="mailto:contact@prospecbank.cm" class="cta-button"
+            >Request a Consultation</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>&copy; 2024 ProspecBank Digital Solutions. All Rights Reserved.</p>
+      <p style="margin-top: 10px; font-size: 0.9em">
+        Empowering Cameroonian Financial Institutions Through Digital Excellence
+      </p>
+    </div>
+  </body>
+</html>

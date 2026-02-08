@@ -32,13 +32,12 @@ export default function StaffPortalLogin() {
   const opacity = useRef(new Animated.Value(0)).current;
   const toastTimeout = useRef<number | null>(null);
 
-  const BASE_URL =
-    "https://biometric-staff-attendance-mgt-production.up.railway.app";
+  const BASE_URL = "http://72.62.107.114:8085";
 
   // Show a transient toast/snackbar
   const showToast = (
     message: string,
-    type: "info" | "success" | "error" = "info"
+    type: "info" | "success" | "error" = "info",
   ) => {
     if (toastTimeout.current) {
       clearTimeout(toastTimeout.current as any);
@@ -79,7 +78,7 @@ export default function StaffPortalLogin() {
           setBiometricType("Fingerprint");
         } else if (
           types.includes(
-            LocalAuthentication.AuthenticationType.FACIAL_RECOGNITION
+            LocalAuthentication.AuthenticationType.FACIAL_RECOGNITION,
           )
         ) {
           setBiometricType("Face ID");
@@ -91,7 +90,7 @@ export default function StaffPortalLogin() {
         if (!enrolled) {
           showToast(
             "No biometrics enrolled. Please enable biometrics in device settings.",
-            "info"
+            "info",
           );
         }
       }
@@ -109,7 +108,7 @@ export default function StaffPortalLogin() {
     if (!isBiometricSupported) {
       showToast(
         "Biometric authentication is not supported on this device.",
-        "error"
+        "error",
       );
       return;
     }
@@ -128,14 +127,14 @@ export default function StaffPortalLogin() {
         recordAttendance(employeeId);
         showToast(
           "Authentication successful — recording attendance.",
-          "success"
+          "success",
         );
       } else {
         showToast(
           result.error === "user_cancel"
             ? "Authentication cancelled."
             : `${biometricType} does not match. Please try again.`,
-          "error"
+          "error",
         );
       }
     } catch (err) {
@@ -207,11 +206,11 @@ export default function StaffPortalLogin() {
         let successMessage = "Attendance recorded successfully";
         if (responseData.status === "ARRIVAL_RECORDED") {
           successMessage = `Check-in recorded at ${new Date(
-            responseData.arrivalTime
+            responseData.arrivalTime,
           ).toLocaleTimeString()}`;
         } else if (responseData.status === "DEPARTURE_RECORDED") {
           successMessage = `Check-out recorded at ${new Date(
-            responseData.departureTime
+            responseData.departureTime,
           ).toLocaleTimeString()}`;
         }
 
@@ -250,7 +249,7 @@ export default function StaffPortalLogin() {
       if (err instanceof TypeError) {
         showToast(
           "Network error. Check your connection and server URL",
-          "error"
+          "error",
         );
       } else {
         showToast("Unable to reach attendance server.", "error");

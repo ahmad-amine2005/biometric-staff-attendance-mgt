@@ -12,6 +12,12 @@ export interface RegisterRequest {
   password: string;
 }
 
+export interface RegisterResponse {
+  message: string;
+  adminId: number;
+  email: string;
+}
+
 export interface AuthResponse {
   accessToken: string;
   expiresIn: number;

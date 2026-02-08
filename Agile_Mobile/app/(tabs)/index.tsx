@@ -32,7 +32,7 @@ export default function StaffPortalLogin() {
   const opacity = useRef(new Animated.Value(0)).current;
   const toastTimeout = useRef<number | null>(null);
 
-  const BASE_URL = "http://72.62.107.114:8085";
+  const BASE_URL = "http://72.62.107.114:8085/api";
 
   // Show a transient toast/snackbar
   const showToast = (

@@ -193,6 +193,7 @@ export default function StaffPortalLogin() {
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
+            "Authorization": "Bearer " + "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJzaW1veWFubjIwMDRAZ21haWwuY29tIiwiaWF0IjoxNzcwODg0MjgzLCJleHAiOjE3NzA5NzA2ODN9.yO0kMb97zzRfFCO3r7bipVXyoHb8Ka1Gvau-MM_sxV5ZMFRFBRKXBDRQl2r4kLUz"
         },
         body: JSON.stringify(attendanceRecord),
       });

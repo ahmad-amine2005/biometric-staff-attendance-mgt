@@ -158,6 +158,7 @@ cd Back-end/Fingerprint-management
 mvn clean package
 java -jar target/fingerprint-management-*. jar
 ```
+NB: The backend is automatically deployed on a VPS on every change made in the backend directory through GitHub Actions. The production build is available at `https://simsyann.dev/fingerprint`
 
 ### Web Application
 ```bash
@@ -168,7 +169,12 @@ ng deploy --base-href=/biometric-staff-attendance-mgt/
 # This command builds the project using the production configuration, which includes optimizations for performance and speed.
 # This command deploys the built project to a hosting service, setting the base URL for the application to `/biometric-staff-attendance-mgt/`.
 ```
+NB: The Front end web app is automatically deployed on github pages on every change made in the backend directory through GitHub Actions. The production build is available at `https://ahmad-amine2005.github.io/biometric-staff-attendance-mgt/`
 
+### User Admin Credentials
+
+- **email**: johnass.admin@company.com
+- **Password**: admin123456
 
 ### Mobile App
 ```bash
@@ -191,7 +197,7 @@ Main entities:
 - **Fingerprint**: Biometric authentication data
 
 ## 🤝 Contributing
-- [sims-yann](https://sims-yann.me)
+- [Kouetche Simo Yann Jefferson](https://sims-yann.me)
 - Ahmad-amine
 - Foning Luc Xavier
 - Kengne Gloria
